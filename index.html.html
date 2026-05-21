@@ -1,0 +1,3096 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="referrer" content="no-referrer" />
+<title>Presidents Club for Trainers '26 – Gran Canaria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<!-- jsPDF for PDF export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+  :root {
+    --navy-900: #0A1B36;
+    --navy-800: #0F2547;
+    --navy-700: #1A3560;
+    --navy-600: #2A4878;
+    --coral-500: #E8633A;
+    --coral-400: #F08160;
+    --coral-100: #FAECE7;
+    --teal-500: #1D9E75;
+    --teal-100: #E1F5EE;
+    --blue-500: #378ADD;
+    --blue-100: #E6F1FB;
+    --amber-500: #EF9F27;
+    --amber-100: #FAEEDA;
+    --bg: #F5F3EE;
+    --surface: #FFFFFF;
+    --surface-2: #FAF8F3;
+    --text-1: #0A1B36;
+    --text-2: #5F5E5A;
+    --text-3: #9A9893;
+    --border: rgba(10, 27, 54, 0.08);
+    --border-strong: rgba(10, 27, 54, 0.18);
+    --shadow-sm: 0 1px 2px rgba(10, 27, 54, 0.06);
+    --shadow-md: 0 4px 16px rgba(10, 27, 54, 0.08);
+    --shadow-lg: 0 12px 32px rgba(10, 27, 54, 0.12);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-top: env(safe-area-inset-top, 0px);
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Icon system: SVG icons rendered by JS, no external font needed */
+  .ti {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    line-height: 1;
+  }
+  .ti svg {
+    width: 1em;
+    height: 1em;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text-1);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* App shell — mobile-first, max 480px column centered on desktop */
+  .app {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: var(--bg);
+    padding-bottom: calc(80px + var(--safe-bottom));
+    position: relative;
+  }
+
+  /* ---------- HEADER / HERO ---------- */
+  .hero {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    background: var(--navy-800);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10, 27, 54, 0.25) 0%, rgba(10, 27, 54, 0.65) 50%, rgba(10, 27, 54, 0.95) 100%),
+      linear-gradient(135deg, #E8633A 0%, #2A5F94 50%, #0F2547 100%);
+    background-size: cover;
+    background-position: center;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://www.lopesan.com/documents/49789/1476080/1+OFERTAS__HOTELES__LBA_LHG.jpg/44861edd-625e-4fa0-def2-e8f06c4fc235?version=3.0&t=1763159827325');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.55;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: calc(20px + var(--safe-top)) 20px 24px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+  }
+  .hero-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .brand-pill i { color: var(--coral-400); font-size: 14px; }
+  .hero-icon-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .hero-bottom h1 {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.05;
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+  .hero-bottom h1 .accent { color: var(--coral-400); }
+  .hero-sub {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 13px;
+    opacity: 0.9;
+  }
+  .hero-sub i { font-size: 14px; }
+  .hero-dates {
+    margin-top: 4px;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+  .countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .cd-box {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-md);
+    padding: 8px 4px;
+    text-align: center;
+  }
+  .cd-num {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+  }
+  .cd-lbl {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    opacity: 0.7;
+    margin-top: 4px;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section {
+    padding: 24px 20px 8px;
+    display: none;
+  }
+  .section.active { display: block; }
+  .section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-1);
+    letter-spacing: -0.2px;
+  }
+  .section-title .accent { color: var(--coral-500); }
+  .section-sub {
+    font-size: 12px;
+    color: var(--text-2);
+    margin-top: 2px;
+  }
+
+  /* ---------- CARDS ---------- */
+  .card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+  }
+  .card-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .card-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .card-icon.coral { background: var(--coral-100); color: var(--coral-500); }
+  .card-icon.blue { background: var(--blue-100); color: var(--blue-500); }
+  .card-icon.teal { background: var(--teal-100); color: var(--teal-500); }
+  .card-icon.amber { background: var(--amber-100); color: var(--amber-500); }
+  .card-icon.navy { background: var(--navy-800); color: #fff; }
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin: 0;
+    line-height: 1.3;
+  }
+  .card-meta {
+    font-size: 12px;
+    color: var(--text-2);
+    margin: 4px 0 0;
+    line-height: 1.4;
+  }
+
+  /* ---------- HOME ---------- */
+  .next-up-card {
+    background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-700) 100%);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: 18px;
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+  .next-up-card::after {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 140px; height: 140px;
+    background: var(--coral-500);
+    opacity: 0.18;
+    border-radius: 50%;
+    filter: blur(20px);
+  }
+  .next-up-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--coral-400);
+    font-weight: 600;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .next-up-title {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    position: relative; z-index: 1;
+  }
+  .next-up-meta {
+    font-size: 13px;
+    opacity: 0.85;
+    position: relative; z-index: 1;
+  }
+
+  .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .quick-tile {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    text-align: left;
+    font-family: inherit;
+    color: var(--text-1);
+  }
+  .quick-tile:active { transform: scale(0.97); }
+  .quick-tile:hover { border-color: var(--coral-500); }
+  .quick-tile i { font-size: 22px; color: var(--coral-500); display: block; margin-bottom: 8px; }
+  .quick-tile-title { font-size: 13px; font-weight: 600; }
+  .quick-tile-sub { font-size: 11px; color: var(--text-2); margin-top: 2px; }
+
+  .highlight-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: stretch;
+    min-height: 88px;
+  }
+  .highlight-img {
+    width: 88px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+  }
+  .highlight-body {
+    padding: 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .highlight-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+  }
+  .highlight-meta {
+    font-size: 11px;
+    color: var(--text-2);
+    margin: 2px 0 0;
+  }
+
+  /* ---------- HOTEL CAROUSEL ---------- */
+  .hotel-carousel {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .hotel-carousel::-webkit-scrollbar { display: none; }
+  .hotel-slide {
+    min-width: 280px;
+    height: 200px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--navy-700) 0%, var(--navy-800) 100%);
+    scroll-snap-align: start;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    flex-shrink: 0;
+  }
+  .hotel-slide img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+  .hotel-slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(10, 27, 54, 0.85) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 14px;
+    color: #fff;
+    z-index: 1;
+  }
+  .hotel-slide-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--coral-400);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .hotel-slide-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 12px 0 18px;
+  }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border-strong);
+    transition: all 0.25s ease;
+  }
+  .dot.active {
+    background: var(--coral-500);
+    width: 20px;
+    border-radius: 999px;
+  }
+  .hotel-quick-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .hqi-stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hqi-stat i { color: var(--coral-500); font-size: 16px; }
+
+  /* ---------- BREAKOUT SESSIONS (Lovable style accordion) ---------- */
+  .round-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 16px;
+    background: var(--surface);
+    padding: 4px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+  }
+  .round-tab {
+    padding: 9px 6px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-2);
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .round-tab.active {
+    background: var(--navy-800);
+    color: #fff;
+  }
+
+  .breakout-acc {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+  .breakout-acc-head {
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .breakout-acc-head:hover { background: var(--surface-2); }
+  .breakout-number {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--navy-800);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .breakout-acc.g1 .breakout-number { background: var(--navy-800); }
+  .breakout-acc.g2 .breakout-number { background: var(--navy-800); }
+  .breakout-acc.g3 .breakout-number { background: var(--navy-800); }
+  .breakout-acc-title-wrap { flex: 1; min-width: 0; }
+  .breakout-acc-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-1);
+    margin: 0;
+    line-height: 1.2;
+  }
+  .breakout-acc-coaches {
+    font-size: 12px;
+    color: var(--coral-500);
+    font-weight: 500;
+    margin-top: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .breakout-acc-chevron {
+    font-size: 22px;
+    color: var(--text-3);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+  .breakout-acc.open .breakout-acc-chevron { transform: rotate(180deg); }
+  .breakout-acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .breakout-acc.open .breakout-acc-body { max-height: 3000px; }
+  .breakout-acc-inner {
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .block-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 18px 0 10px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--coral-500);
+  }
+  .block-label i { font-size: 16px; }
+
+  .breakout-textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text-1);
+    resize: vertical;
+    outline: none;
+    line-height: 1.5;
+    transition: border-color 0.15s;
+  }
+  .breakout-textarea:focus { border-color: var(--coral-500); }
+  .breakout-textarea::placeholder { color: var(--text-3); }
+
+  .breakout-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  .link-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-2);
+    font-family: inherit;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+  .link-btn:hover { color: var(--coral-500); }
+  .mini-status {
+    font-size: 11px;
+    color: var(--teal-500);
+    font-weight: 500;
+  }
+
+  .commitment-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .commitment-num {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--navy-800);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .commitment-input {
+    flex: 1;
+    padding: 10px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text-1);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .commitment-input:focus { border-color: var(--coral-500); }
+  .commitment-input::placeholder { color: var(--text-3); }
+
+  .stars {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .star-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: var(--border-strong);
+    transition: transform 0.12s, color 0.15s;
+  }
+  .star-btn:hover { transform: scale(1.1); }
+  .star-btn i { font-size: 28px; }
+  .star-btn.filled { color: var(--amber-500); }
+
+  .breakout-photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .breakout-photo-tile {
+    aspect-ratio: 1;
+    border-radius: var(--radius-sm);
+    background: var(--surface-2);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid var(--border);
+  }
+  .breakout-photo-tile img { width: 100%; height: 100%; object-fit: cover; }
+  .breakout-photo-empty {
+    background: var(--surface-2);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    text-align: center;
+    color: var(--text-3);
+    border: 1px dashed var(--border-strong);
+    margin-top: 10px;
+  }
+  .breakout-photo-empty i {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .breakout-photo-empty-text {
+    font-size: 12px;
+  }
+  .breakout-photo-btn {
+    width: 100%;
+    background: var(--navy-800);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .breakout-photo-btn:hover { background: var(--navy-700); }
+
+  /* ---------- PDF EXPORT BUTTON ---------- */
+  .pdf-export-card {
+    background: linear-gradient(135deg, var(--coral-500) 0%, #C04C2F 100%);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    margin-bottom: 16px;
+    color: #fff;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  .pdf-export-card::after {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 100px; height: 100px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 50%;
+    filter: blur(10px);
+  }
+  .pdf-export-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+    position: relative; z-index: 1;
+  }
+  .pdf-export-sub {
+    font-size: 12px;
+    opacity: 0.9;
+    margin: 2px 0 12px;
+    position: relative; z-index: 1;
+  }
+  .pdf-export-btn {
+    background: #fff;
+    color: var(--coral-500);
+    border: none;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative; z-index: 1;
+    transition: transform 0.15s;
+  }
+  .pdf-export-btn:hover { transform: translateY(-1px); }
+  .pdf-export-btn:active { transform: scale(0.98); }
+  .pdf-export-btn i { font-size: 18px; }
+  .pdf-export-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-actions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .photo-btn {
+    flex: 1;
+    background: var(--navy-800);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.15s;
+  }
+  .photo-btn:hover { background: var(--navy-700); }
+  .photo-btn.secondary {
+    background: var(--surface);
+    color: var(--navy-800);
+    border: 1px solid var(--border);
+  }
+  .photo-btn.secondary:hover { border-color: var(--navy-800); }
+  .gallery-filter {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .gallery-filter::-webkit-scrollbar { display: none; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    margin: 0 -2px;
+  }
+  .gallery-tile {
+    aspect-ratio: 1;
+    background: var(--surface-2);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid var(--border);
+  }
+  .gallery-tile img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .gallery-tile-tag {
+    position: absolute;
+    top: 4px; left: 4px;
+    background: rgba(10, 27, 54, 0.7);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .gallery-tile-del {
+    position: absolute;
+    top: 4px; right: 4px;
+    background: rgba(192, 57, 43, 0.85);
+    color: #fff;
+    border: none;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    font-size: 12px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .gallery-tile:hover .gallery-tile-del { display: flex; }
+  .gallery-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-3);
+  }
+  .gallery-empty i {
+    font-size: 48px;
+    color: var(--border-strong);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .gallery-empty-text {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  /* Hidden file input */
+  #photo-input { display: none; }
+
+  /* Photo lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: var(--radius-md);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: calc(20px + var(--safe-top));
+    right: 20px;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  /* ---------- PARTICIPANT DROPDOWN (3 Groups side-by-side) ---------- */
+  .participant-dropdown {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .dropdown-toggle {
+    width: 100%;
+    background: var(--surface);
+    border: none;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-1);
+    text-align: left;
+  }
+  .dropdown-toggle:hover { background: var(--surface-2); }
+  .dropdown-chev {
+    font-size: 20px;
+    color: var(--text-3);
+    transition: transform 0.3s ease;
+  }
+  .participant-dropdown.open .dropdown-chev { transform: rotate(180deg); }
+  .dropdown-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .participant-dropdown.open .dropdown-body { max-height: 1000px; }
+  .three-groups {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .three-group-col {
+    background: var(--surface-2);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    min-width: 0;
+  }
+  .three-group-head {
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 7px 4px;
+    text-align: center;
+  }
+  .three-group-col.g1 .three-group-head { background: var(--blue-500); }
+  .three-group-col.g2 .three-group-head { background: var(--coral-500); }
+  .three-group-col.g3 .three-group-head { background: var(--teal-500); }
+  .three-group-list {
+    padding: 6px 5px;
+    font-size: 10px;
+    line-height: 1.5;
+    color: var(--text-1);
+    font-weight: 500;
+    overflow: hidden;
+    word-break: break-word;
+  }
+  .three-group-list div {
+    padding: 2px 0;
+    border-bottom: 1px solid rgba(10, 27, 54, 0.05);
+  }
+  .three-group-list div:last-child { border-bottom: none; }
+
+  /* ---------- TRAINING ---------- */
+  .training-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 8px 0 20px;
+  }
+  .training-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--coral-500);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+  }
+  .training-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+  .training-card-img {
+    height: 180px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .training-card-body {
+    padding: 16px;
+  }
+  .training-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-1);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .training-link-btn {
+    width: 100%;
+    background: var(--navy-800);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.15s;
+  }
+  .training-link-btn:hover { background: var(--navy-700); }
+  .training-link-btn i { font-size: 16px; }
+
+  /* ---------- AGENDA (Accordion per day) ---------- */
+  .day-section {
+    margin-bottom: 12px;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .day-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    background: var(--surface);
+    transition: background 0.15s;
+  }
+  .day-header:hover { background: var(--surface-2); }
+  .day-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .day-header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .day-pill {
+    background: var(--navy-800);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: fit-content;
+  }
+  .day-pill.friday { background: var(--coral-500); }
+  .day-pill.saturday { background: var(--teal-500); }
+  .day-date {
+    font-size: 13px;
+    color: var(--text-1);
+    font-weight: 600;
+  }
+  .day-count {
+    font-size: 11px;
+    color: var(--text-3);
+  }
+  .day-chevron {
+    font-size: 20px;
+    color: var(--text-3);
+    transition: transform 0.3s ease;
+  }
+  .day-section.open .day-chevron { transform: rotate(180deg); }
+  .day-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .day-section.open .day-content { max-height: 2000px; }
+  .day-content-inner {
+    padding: 4px 12px 14px;
+    border-top: 1px solid var(--border);
+  }
+  .agenda-item {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    padding: 12px 12px 12px 0;
+    margin-top: 8px;
+    display: flex;
+    box-shadow: none;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .agenda-time {
+    width: 68px;
+    flex-shrink: 0;
+    text-align: center;
+    padding: 0 8px;
+    border-right: 1px solid var(--border);
+    margin-right: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .agenda-time-from {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-1);
+    font-variant-numeric: tabular-nums;
+  }
+  .agenda-time-to {
+    font-size: 10px;
+    color: var(--text-3);
+    font-variant-numeric: tabular-nums;
+    margin-top: 2px;
+  }
+  .agenda-body { flex: 1; min-width: 0; }
+  .agenda-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.3;
+  }
+  .agenda-speaker {
+    font-size: 12px;
+    color: var(--text-2);
+    margin-top: 3px;
+  }
+  .agenda-tag {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .agenda-tag.meal { background: var(--amber-100); color: #854F0B; }
+  .agenda-tag.break { background: var(--blue-100); color: var(--blue-500); }
+  .agenda-tag.session { background: var(--coral-100); color: var(--coral-500); }
+  .agenda-tag.fun { background: var(--teal-100); color: var(--teal-500); }
+
+  /* ---------- COACHES ---------- */
+  .filter-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .filter-bar::-webkit-scrollbar { display: none; }
+  .filter-chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-2);
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+  }
+  .filter-chip.active {
+    background: var(--navy-800);
+    color: #fff;
+    border-color: var(--navy-800);
+  }
+  .coach-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 14px;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .coach-card:active { transform: scale(0.99); }
+  .coach-card:hover { border-color: var(--coral-500); box-shadow: var(--shadow-md); }
+  .avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--navy-800);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    letter-spacing: 0.5px;
+  }
+  .avatar.coral { background: var(--coral-500); }
+  .avatar.teal { background: var(--teal-500); }
+  .avatar.blue { background: var(--blue-500); }
+  .coach-info { flex: 1; min-width: 0; }
+  .coach-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+  }
+  .coach-role {
+    font-size: 11px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 3px;
+    font-weight: 500;
+  }
+  .coach-topics {
+    font-size: 12px;
+    color: var(--text-2);
+    margin-top: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .coach-card .chevron {
+    color: var(--text-3);
+    font-size: 18px;
+  }
+
+  /* ---------- GROUPS ---------- */
+  .group-switcher {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .group-btn {
+    padding: 10px 8px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-2);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .group-btn.active {
+    color: #fff;
+    border-color: transparent;
+  }
+  .group-btn.g1.active { background: var(--blue-500); }
+  .group-btn.g2.active { background: var(--coral-500); }
+  .group-btn.g3.active { background: var(--teal-500); }
+
+  .group-banner {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+  }
+  .group-banner-title {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .group-banner-sub {
+    font-size: 11px;
+    color: var(--text-2);
+    margin-top: 2px;
+  }
+  .theme-pill {
+    padding: 5px 11px;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .participant-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .participant {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 0;
+  }
+  .p-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .p-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* ---------- HOTEL ---------- */
+  .hotel-hero {
+    height: 200px;
+    border-radius: var(--radius-lg);
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.6) 100%),
+      linear-gradient(135deg, #C49968 0%, #8B6F47 50%, #4A6FA5 100%);
+  }
+  .hotel-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://www.lopesan.com/o/adaptive-media/image/1315088/desktop-1025-1440/LODGE+%2833%29.jpg?t=1763460246128');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  .hotel-hero > * { position: relative; z-index: 1; }
+  .hotel-hero-content {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    color: #fff;
+  }
+  .hotel-hero-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .hotel-hero-sub {
+    font-size: 12px;
+    opacity: 0.9;
+    margin-top: 2px;
+  }
+  .hotel-stars { color: var(--amber-500); margin-bottom: 4px; font-size: 13px; }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .info-stat {
+    background: var(--surface);
+    padding: 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+  }
+  .info-stat-lbl {
+    font-size: 10px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+  .info-stat-val {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 4px;
+    color: var(--text-1);
+  }
+  .info-stat i {
+    color: var(--coral-500);
+    font-size: 14px;
+    margin-right: 4px;
+    vertical-align: -1px;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    font-family: inherit;
+    color: var(--text-1);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    transition: all 0.15s;
+  }
+  .action-btn:active { transform: scale(0.98); }
+  .action-btn:hover { border-color: var(--coral-500); }
+  .action-btn i {
+    font-size: 20px;
+    color: var(--coral-500);
+    flex-shrink: 0;
+  }
+  .action-btn i.navy { color: var(--navy-800); }
+  .action-btn .chevron {
+    margin-left: auto;
+    color: var(--text-3);
+    font-size: 16px;
+  }
+  .action-btn.danger i { color: #C0392B; }
+
+  /* ---------- INFO / NOTES ---------- */
+  .checklist {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 8px;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .checklist-item:hover { background: var(--surface-2); }
+  .check-box {
+    width: 20px; height: 20px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: transparent;
+    transition: all 0.15s;
+  }
+  .checklist-item.checked .check-box {
+    background: var(--coral-500);
+    border-color: var(--coral-500);
+  }
+  .checklist-item.checked .check-box::after {
+    content: '\eb7b';
+    font-family: 'tabler-icons';
+    color: #fff;
+    font-size: 14px;
+  }
+  .checklist-item.checked .check-label {
+    text-decoration: line-through;
+    color: var(--text-3);
+  }
+
+  .notes-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 14px;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .notes-textarea {
+    width: 100%;
+    min-height: 120px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text-1);
+    resize: vertical;
+    outline: none;
+    line-height: 1.5;
+  }
+  .notes-textarea::placeholder { color: var(--text-3); }
+  .notes-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .save-btn {
+    background: var(--navy-800);
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .save-btn:hover { background: var(--navy-700); }
+  .save-status {
+    font-size: 11px;
+    color: var(--teal-500);
+    font-weight: 500;
+  }
+
+  /* ---------- BOTTOM NAV (Lovable-style) ---------- */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-top: 1px solid var(--border);
+    padding: 10px 4px calc(10px + var(--safe-bottom));
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    z-index: 50;
+  }
+  .nav-btn {
+    background: transparent;
+    border: none;
+    padding: 6px 2px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    color: var(--text-3);
+    font-family: inherit;
+    font-size: 9px;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    transition: all 0.18s ease;
+    position: relative;
+    min-width: 0;
+  }
+  .nav-icon-wrap {
+    width: 36px;
+    height: 30px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.22s ease;
+  }
+  .nav-btn i { font-size: 19px; transition: transform 0.22s ease; }
+  .nav-btn.active { color: var(--coral-500); }
+  .nav-btn.active .nav-icon-wrap { background: var(--coral-100); }
+  .nav-btn.active i { color: var(--coral-500); }
+  .nav-btn span {
+    letter-spacing: 0.1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 27, 54, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 100;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: var(--surface);
+    width: 100%;
+    max-width: 480px;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    padding: 20px 20px calc(28px + var(--safe-bottom));
+    max-height: 85vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  .modal-handle {
+    width: 40px; height: 4px;
+    background: var(--border-strong);
+    border-radius: 999px;
+    margin: 0 auto 16px;
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .modal-avatar {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--navy-800);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .modal-name {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .modal-role {
+    font-size: 12px;
+    color: var(--text-2);
+    margin-top: 2px;
+  }
+  .modal-section { margin-bottom: 16px; }
+  .modal-section-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-3);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .modal-list { list-style: none; padding: 0; margin: 0; }
+  .modal-list li {
+    padding: 6px 0;
+    font-size: 13px;
+    color: var(--text-1);
+    display: flex;
+    gap: 8px;
+  }
+  .modal-list li::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--coral-500);
+    border-radius: 50%;
+    margin-top: 9px;
+    flex-shrink: 0;
+  }
+
+  /* ---------- TOAST ---------- */
+  .toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-200%);
+    background: var(--navy-800);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease;
+    z-index: 200;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+
+<div class="app" id="app">
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-top">
+        <span class="brand-pill"><i class="ti ti-star"></i> PC4T '26</span>
+        <button class="hero-icon-btn" onclick="goTo('info')" aria-label="Info"><i class="ti ti-info-circle"></i></button>
+      </div>
+      <div class="hero-bottom">
+        <h1>Presidents Club<br /><span class="accent">for Trainers '26</span></h1>
+        <div class="hero-sub"><i class="ti ti-map-pin"></i> Gran Canaria · Lopesan Baobab Resort</div>
+        <div class="hero-dates">Datum folgt · Anreise & Ankunft 14:00 – 16:00 Uhr</div>
+        <div class="countdown">
+          <div class="cd-box"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Tage</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">Std</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">Min</div></div>
+          <div class="cd-box"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">Sek</div></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HOME -->
+  <section class="section active" id="sec-home">
+    <div class="next-up-card">
+      <div class="next-up-label">Als Nächstes</div>
+      <div class="next-up-title">Anreise &amp; Ankunft</div>
+      <div class="next-up-meta">Donnerstag · 14:00 – 16:00 Uhr<br />Lopesan Baobab Resort, Meloneras</div>
+    </div>
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">Dein Hotel</div>
+        <div class="section-sub">Lopesan Baobab Resort · Meloneras</div>
+      </div>
+      <button class="hero-icon-btn" style="background: var(--surface); border: 1px solid var(--border); color: var(--coral-500); width: 34px; height: 34px;" onclick="goTo('hotel')" aria-label="Mehr zum Hotel"><i class="ti ti-arrow-right" style="font-size: 16px;"></i></button>
+    </div>
+
+    <div class="hotel-carousel" id="hotel-carousel">
+      <div class="hotel-slide" style="background: linear-gradient(135deg, #C49968 0%, #8B6F47 50%, #4A6FA5 100%);">
+        <img src="https://www.lopesan.com/o/adaptive-media/image/1315088/desktop-1025-1440/LODGE+%2833%29.jpg?t=1763460246128" alt="Grotten-Pool" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.style.display='none'" loading="lazy" />
+        <div class="hotel-slide-overlay">
+          <div class="hotel-slide-label">Lopesan Baobab Resort</div>
+          <div class="hotel-slide-title">Grotten-Pool</div>
+        </div>
+      </div>
+      <div class="hotel-slide" style="background: linear-gradient(135deg, #4A90D9 0%, #2A5F94 50%, #C49968 100%);">
+        <img src="https://res.cloudinary.com/amenitiz/image/upload/w_1440,dpr_auto,f_auto,q_auto:good/v1650625684/eiu9fzl7hfwobjjlpncw.jpg" alt="Meloneras Promenade" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.style.display='none'" loading="lazy" />
+        <div class="hotel-slide-overlay">
+          <div class="hotel-slide-label">Meloneras</div>
+          <div class="hotel-slide-title">Promenade am Meer</div>
+        </div>
+      </div>
+      <div class="hotel-slide" style="background: linear-gradient(135deg, #F09040 0%, #E8633A 50%, #C04C2F 100%);">
+        <img src="https://www.hotelesdunas.com/data/webp/dunasdemaspalomas-04bcb118d1271f0e998613fb8ea64a28.webp" alt="Sonnenuntergang" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.style.display='none'" loading="lazy" />
+        <div class="hotel-slide-overlay">
+          <div class="hotel-slide-label">Gran Canaria</div>
+          <div class="hotel-slide-title">Sonnenuntergang</div>
+        </div>
+      </div>
+      <div class="hotel-slide" style="background: linear-gradient(135deg, #1D9E75 0%, #2A6F4F 50%, #3B6EA8 100%);">
+        <img src="https://www.lopesan.com/o/adaptive-media/image/1315131/desktop-1025-1440/ENVIRONMENT+%284%29.jpg?t=1763459651499" alt="Gartenanlage" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.style.display='none'" loading="lazy" />
+        <div class="hotel-slide-overlay">
+          <div class="hotel-slide-label">5★ Themenresort</div>
+          <div class="hotel-slide-title">Tropische Gärten</div>
+        </div>
+      </div>
+      <div class="hotel-slide" style="background: linear-gradient(135deg, #EF9F27 0%, #C97A1A 50%, #8B5A2B 100%);">
+        <img src="https://www.grancanaria.com/blog/fileadmin/_processed_/csm_Gran-Canaria-Dunas-de-Maspalomas-a_da4a605f1b.jpg" alt="Dünen" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.style.display='none'" loading="lazy" />
+        <div class="hotel-slide-overlay">
+          <div class="hotel-slide-label">In der Nähe</div>
+          <div class="hotel-slide-title">Maspalomas Dünen</div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-dots" id="carousel-dots"></div>
+
+    <div class="hotel-quick-info">
+      <div class="hqi-stat"><i class="ti ti-star-filled" style="color: var(--amber-500);"></i> 5 Sterne</div>
+      <div class="hqi-stat"><i class="ti ti-beach"></i> 600 m Strand</div>
+      <div class="hqi-stat"><i class="ti ti-pool"></i> Mehrere Pools</div>
+      <div class="hqi-stat"><i class="ti ti-plane"></i> 30 km LPA</div>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="section" id="sec-agenda">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Agenda</div>
+        <div class="section-sub">Dein Programm im Überblick</div>
+      </div>
+    </div>
+
+    <div class="day-section" data-day="thu">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-header-left">
+          <span class="day-pill">Tag 1</span>
+          <div class="day-header-info">
+            <div class="day-date">Donnerstag</div>
+            <div class="day-count">6 Programmpunkte</div>
+          </div>
+        </div>
+        <i class="ti ti-chevron-down day-chevron"></i>
+      </div>
+      <div class="day-content"><div class="day-content-inner">
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">14:00</div><div class="agenda-time-to">16:00</div></div><div class="agenda-body"><div class="agenda-title">Anreise & Ankunft</div><div class="agenda-speaker">Lopesan Baobab Resort</div></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">18:00</div><div class="agenda-time-to">open end</div></div><div class="agenda-body"><div class="agenda-title">Get Together</div><div class="agenda-speaker">Eröffnungslocation am Resort</div><span class="agenda-tag fun">Networking</span></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">18:00</div><div class="agenda-time-to">18:15</div></div><div class="agenda-body"><div class="agenda-title">Eröffnungsrede</div><div class="agenda-speaker">Ben &amp; Sven</div></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">18:15</div><div class="agenda-time-to">18:30</div></div><div class="agenda-body"><div class="agenda-title">Vorstellung SP Coaches</div><div class="agenda-speaker">Ben &amp; Sven im Dialog</div></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">18:30</div><div class="agenda-time-to">18:45</div></div><div class="agenda-body"><div class="agenda-title">Key Note</div><div class="agenda-speaker">Roman &amp; Luisa</div><span class="agenda-tag session">Inspiration</span></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">19:30</div><div class="agenda-time-to">open end</div></div><div class="agenda-body"><div class="agenda-title">Dinner</div><div class="agenda-speaker">Buffetrestaurant</div><span class="agenda-tag meal">Essen</span></div></div>
+      </div></div>
+    </div>
+
+    <div class="day-section" data-day="fri">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-header-left">
+          <span class="day-pill friday">Tag 2</span>
+          <div class="day-header-info">
+            <div class="day-date">Freitag</div>
+            <div class="day-count">9 Programmpunkte</div>
+          </div>
+        </div>
+        <i class="ti ti-chevron-down day-chevron"></i>
+      </div>
+      <div class="day-content"><div class="day-content-inner">
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">08:00</div><div class="agenda-time-to">09:15</div></div><div class="agenda-body"><div class="agenda-title">Frühstück</div><span class="agenda-tag meal">Essen</span></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">09:30</div><div class="agenda-time-to">10:00</div></div><div class="agenda-body"><div class="agenda-title">Welcome</div><div class="agenda-speaker">Ben Prause</div></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">10:00</div><div class="agenda-time-to">11:10</div></div><div class="agenda-body"><div class="agenda-title">Breakout Runde 1</div><div class="agenda-speaker">3 Coaches pro Gruppe</div><span class="agenda-tag session">Workshop</span></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">11:10</div><div class="agenda-time-to">11:40</div></div><div class="agenda-body"><div class="agenda-title">Kaffeepause &amp; Gruppenfoto</div><span class="agenda-tag break">Pause</span></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">11:40</div><div class="agenda-time-to">12:55</div></div><div class="agenda-body"><div class="agenda-title">Breakout Runde 2</div><div class="agenda-speaker">3 Coaches pro Gruppe</div><span class="agenda-tag session">Workshop</span></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">12:55</div><div class="agenda-time-to">13:45</div></div><div class="agenda-body"><div class="agenda-title">Lunch</div><span class="agenda-tag meal">Essen</span></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">13:45</div><div class="agenda-time-to">14:55</div></div><div class="agenda-body"><div class="agenda-title">Breakout Runde 3</div><div class="agenda-speaker">3 Coaches pro Gruppe</div><span class="agenda-tag session">Workshop</span></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">15:00</div><div class="agenda-time-to">15:15</div></div><div class="agenda-body"><div class="agenda-title">Closing &amp; Ausblick</div><div class="agenda-speaker">Ben &amp; Coaches</div></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">16:00</div><div class="agenda-time-to">open end</div></div><div class="agenda-body"><div class="agenda-title">Pool Party</div><span class="agenda-tag fun">Feiern</span></div></div>
+      </div></div>
+    </div>
+
+    <div class="day-section" data-day="sat">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-header-left">
+          <span class="day-pill saturday">Tag 3</span>
+          <div class="day-header-info">
+            <div class="day-date">Samstag</div>
+            <div class="day-count">5 Programmpunkte</div>
+          </div>
+        </div>
+        <i class="ti ti-chevron-down day-chevron"></i>
+      </div>
+      <div class="day-content"><div class="day-content-inner">
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">08:00</div><div class="agenda-time-to">09:15</div></div><div class="agenda-body"><div class="agenda-title">Frühstück</div><span class="agenda-tag meal">Essen</span></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">09:30</div><div class="agenda-time-to">—</div></div><div class="agenda-body"><div class="agenda-title">Abfahrt zur Aktivität</div></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">10:00</div><div class="agenda-time-to">14:00</div></div><div class="agenda-body"><div class="agenda-title">Katamaran Tour</div><span class="agenda-tag fun">Aktivität</span></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">15:30</div><div class="agenda-time-to">17:00</div></div><div class="agenda-body"><div class="agenda-title">Wrap Up in den Gruppen</div><div class="agenda-speaker">Mit den Coaches · Location folgt</div><span class="agenda-tag session">Reflexion</span></div></div>
+        <div class="agenda-item"><div class="agenda-time"><div class="agenda-time-from">19:00</div><div class="agenda-time-to">—</div></div><div class="agenda-body"><div class="agenda-title">Abholung am Hotel &amp; Abfahrt Dinner</div><span class="agenda-tag meal">Essen</span></div></div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- COACHES -->
+  <section class="section" id="sec-coaches">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Coaches &amp; Team</div>
+        <div class="section-sub">Tippe einen Coach für Details</div>
+      </div>
+    </div>
+    <div class="filter-bar" id="coach-filter">
+      <button class="filter-chip active" data-filter="all">Alle</button>
+      <button class="filter-chip" data-filter="sp">Sales Partner</button>
+      <button class="filter-chip" data-filter="ho">Head Office</button>
+    </div>
+    <div id="coach-list"></div>
+  </section>
+
+  <!-- GROUPS -->
+  <section class="section" id="sec-groups">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Breakout Gruppen</div>
+        <div class="section-sub">Deine Crew für die Sessions</div>
+      </div>
+    </div>
+    <div class="group-switcher">
+      <button class="group-btn g1 active" data-group="1">Gruppe 1</button>
+      <button class="group-btn g2" data-group="2">Gruppe 2</button>
+      <button class="group-btn g3" data-group="3">Gruppe 3</button>
+    </div>
+    <div class="group-banner">
+      <div>
+        <div class="group-banner-title" id="group-title">Gruppe 1</div>
+        <div class="group-banner-sub" id="group-count">17 Teilnehmer</div>
+      </div>
+      <span class="theme-pill" id="group-pill" style="background: var(--blue-500);">Thema folgt</span>
+    </div>
+    <div class="participant-list" id="participant-list"></div>
+  </section>
+
+  <!-- HOTEL -->
+  <section class="section" id="sec-hotel">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Lopesan Baobab Resort</div>
+        <div class="section-sub">Meloneras, Gran Canaria</div>
+      </div>
+    </div>
+    <div class="hotel-hero">
+      <div class="hotel-hero-content">
+        <div class="hotel-stars">★★★★★</div>
+        <div class="hotel-hero-title">Baobab Resort</div>
+        <div class="hotel-hero-sub">Themenresort im afrikanischen Stil</div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-stat"><div class="info-stat-lbl">Stil</div><div class="info-stat-val"><i class="ti ti-tent"></i>Afrikanisch</div></div>
+      <div class="info-stat"><div class="info-stat-lbl">Lage</div><div class="info-stat-val"><i class="ti ti-map-pin"></i>Meloneras</div></div>
+      <div class="info-stat"><div class="info-stat-lbl">Strand</div><div class="info-stat-val"><i class="ti ti-beach"></i>~600 m</div></div>
+      <div class="info-stat"><div class="info-stat-lbl">Pools</div><div class="info-stat-val"><i class="ti ti-pool"></i>Mehrere</div></div>
+    </div>
+
+    <div class="card">
+      <p style="font-size: 13px; color: var(--text-2); margin: 0; line-height: 1.6;">
+        Das Lopesan Baobab Resort ist ein 5-Sterne-Themenresort im afrikanischen Stil mit weitläufigen Pool- und Gartenanlagen, direkt im Hotel-Komplex Meloneras im Süden Gran Canarias. Nähe zur Dünenlandschaft Maspalomas.
+      </p>
+    </div>
+
+    <div class="section-head" style="margin-top: 20px;">
+      <div class="section-title" style="font-size: 14px;">Aktionen</div>
+    </div>
+    <button class="action-btn" onclick="window.open('https://www.lopesan.com/de/hotels/spanien/gran-canaria/meloneras/baobab-resort','_blank')">
+      <i class="ti ti-external-link"></i>
+      <span>Hotel-Website</span>
+      <i class="ti ti-chevron-right chevron"></i>
+    </button>
+    <button class="action-btn" onclick="window.open('https://maps.google.com/?q=Lopesan+Baobab+Resort+Meloneras','_blank')">
+      <i class="ti ti-map"></i>
+      <span>In Karte öffnen</span>
+      <i class="ti ti-chevron-right chevron"></i>
+    </button>
+
+    <div class="section-head" style="margin-top: 20px;">
+      <div class="section-title" style="font-size: 14px;">In der Nähe</div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <div class="card-icon amber"><i class="ti ti-mountain"></i></div>
+        <div>
+          <div class="card-title">Dünen von Maspalomas</div>
+          <div class="card-meta">~2 km · Naturschutzgebiet, perfekt für Sonnenuntergänge</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <div class="card-icon blue"><i class="ti ti-shopping-bag"></i></div>
+        <div>
+          <div class="card-title">Meloneras Boulevard</div>
+          <div class="card-meta">Direkt am Hotel · Bars, Shops & Restaurants</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <div class="card-icon teal"><i class="ti ti-plane"></i></div>
+        <div>
+          <div class="card-title">Flughafen LPA</div>
+          <div class="card-meta">~30 km · ca. 30 Min mit dem Auto</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section class="section" id="sec-info">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Reise-Info</div>
+        <div class="section-sub">Alles Wichtige auf einen Blick</div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top: 0;">
+      <div class="section-title" style="font-size: 14px;">Community</div>
+    </div>
+    <button class="action-btn" onclick="showToast('WhatsApp-Link folgt in Kürze')">
+      <i class="ti ti-brand-whatsapp"></i>
+      <span>WhatsApp-Gruppe</span>
+      <i class="ti ti-clock chevron"></i>
+    </button>
+
+    <div class="section-head" style="margin-top: 22px;">
+      <div class="section-title" style="font-size: 14px;">Teilnehmergruppen</div>
+    </div>
+    <div class="participant-dropdown" id="participant-dropdown">
+      <button class="dropdown-toggle" onclick="toggleParticipantDropdown()">
+        <span><i class="ti ti-users-group" style="color: var(--coral-500); margin-right: 8px; vertical-align: -2px;"></i>Alle Gruppen anzeigen</span>
+        <i class="ti ti-chevron-down dropdown-chev"></i>
+      </button>
+      <div class="dropdown-body">
+        <div class="three-groups">
+          <div class="three-group-col g1">
+            <div class="three-group-head">GRUPPE 1</div>
+            <div class="three-group-list">
+              <div>Ahmad H.</div><div>Ahmet A.</div><div>Ardian S.</div><div>Can W.</div>
+              <div>Chris A.</div><div>Egemen C.</div><div>Hasan C.</div><div>Hasan F.</div>
+              <div>Jacob S.</div><div>Lejla A.</div><div>Melisa K.</div><div>Robert G.</div>
+              <div>Robin P.</div><div>Sam B.</div><div>Selcuk G.</div><div>Sezer Selyaydin A.</div>
+              <div>Sven W.</div>
+            </div>
+          </div>
+          <div class="three-group-col g2">
+            <div class="three-group-head">GRUPPE 2</div>
+            <div class="three-group-list">
+              <div>Alexander B.</div><div>Christopher W.</div><div>Elias H.</div><div>Erion M.</div>
+              <div>Julian Gabriel G.</div><div>Kjell K.</div><div>Loay D.</div><div>Luisa T.</div>
+              <div>Mahan M.</div><div>Maik S.</div><div>Maurice Frank L.</div><div>Pietro D.</div>
+              <div>Robert T.</div><div>Roman R.</div><div>Sadek L.</div><div>Schemus Ö.</div>
+              <div>Stefan R.</div>
+            </div>
+          </div>
+          <div class="three-group-col g3">
+            <div class="three-group-head">GRUPPE 3</div>
+            <div class="three-group-list">
+              <div>Adrian R.</div><div>Anil U.</div><div>Calvin B.</div><div>Fatlum B.</div>
+              <div>Laureen J.</div><div>Lucca Luciano K.</div><div>Luei H.</div><div>Mnjer Z.</div>
+              <div>Ömercan K.</div><div>Petar W.</div><div>Remus N.</div><div>Rinor H.</div>
+              <div>Santo C.</div><div>Tim S.</div><div>Yusuf E.</div><div>Albin H.</div>
+              <div>Rodion S.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top: 22px;">
+      <div class="section-title" style="font-size: 14px;">Packliste</div>
+    </div>
+    <div class="checklist" id="checklist">
+      <div class="checklist-item" data-id="pack-1"><div class="check-box"></div><span class="check-label">Badesachen &amp; Sonnencreme</span></div>
+      <div class="checklist-item" data-id="pack-2"><div class="check-box"></div><span class="check-label">Outfit für Pool Party (Freitag)</span></div>
+      <div class="checklist-item" data-id="pack-3"><div class="check-box"></div><span class="check-label">Bequemes für Katamaran (Samstag)</span></div>
+      <div class="checklist-item" data-id="pack-4"><div class="check-box"></div><span class="check-label">Smart Casual fürs Dinner</span></div>
+      <div class="checklist-item" data-id="pack-5"><div class="check-box"></div><span class="check-label">Sportschuhe für Workshops</span></div>
+      <div class="checklist-item" data-id="pack-6"><div class="check-box"></div><span class="check-label">Adapter (Typ C / F passt in DE)</span></div>
+      <div class="checklist-item" data-id="pack-7"><div class="check-box"></div><span class="check-label">Personalausweis / Reisepass</span></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px; padding: 16px; font-size: 11px; color: var(--text-3);">
+      PC4T '26 · Gran Canaria<br />Made with <i class="ti ti-heart" style="color: var(--coral-500); font-size: 12px; vertical-align: -1px;"></i> for the Trainers
+    </div>
+  </section>
+
+  <!-- TRAINING -->
+  <section class="section" id="sec-training">
+    <div class="section-head">
+      <div>
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--coral-500); margin-bottom: 4px;">Weiterbildung</div>
+        <div class="section-title">Training</div>
+      </div>
+    </div>
+
+    <div class="training-divider"></div>
+    <div class="training-label"><span style="margin-right: 6px;">📚</span> E-Learnings</div>
+
+    <div class="training-card">
+      <div class="training-card-img" style="background: linear-gradient(135deg, #3B6EA8 0%, #6BA3D6 50%, #F0997B 100%);">
+        <div class="training-card-icon"><i class="ti ti-bulb" style="font-size: 64px; color: rgba(255,255,255,0.9);"></i></div>
+      </div>
+      <div class="training-card-body">
+        <div class="training-card-title">Lernpfad Einwandbehandlung</div>
+        <div style="font-size: 12px; color: var(--text-2); margin-top: -8px; margin-bottom: 12px;">Workshop &amp; E-Learning</div>
+        <button class="training-link-btn" onclick="openTrainingLink('https://salescoach.ranger.de/learn/learning-plans/3/einwandbehandlung')">
+          <i class="ti ti-external-link"></i>
+          <span>Klicke hier zum Kurs</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="training-card">
+      <div class="training-card-img" style="background: linear-gradient(135deg, #E8633A 0%, #F0997B 50%, #3B6EA8 100%);">
+        <div class="training-card-icon"><i class="ti ti-target-arrow" style="font-size: 64px; color: rgba(255,255,255,0.9);"></i></div>
+      </div>
+      <div class="training-card-body">
+        <div class="training-card-title">Trainer-Mindset Lernpfad</div>
+        <button class="training-link-btn" onclick="openTrainingLink('https://salescoach.ranger.de/learn/lp/4/trainer-mindset')">
+          <i class="ti ti-external-link"></i>
+          <span>Klicke hier zum Kurs</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="training-card">
+      <div class="training-card-img" style="background: linear-gradient(135deg, #1D9E75 0%, #6BCFA8 50%, #EF9F27 100%);">
+        <div class="training-card-icon"><i class="ti ti-users-group" style="font-size: 64px; color: rgba(255,255,255,0.9);"></i></div>
+      </div>
+      <div class="training-card-body">
+        <div class="training-card-title">PR-Workshop</div>
+        <div style="font-size: 12px; color: var(--text-2); margin-top: -8px; margin-bottom: 12px;">Schreib uns für Infos &amp; Anmeldung</div>
+        <button class="training-link-btn" onclick="window.location.href='mailto:training@ranger.de?subject=PR-Workshop%20Anfrage'">
+          <i class="ti ti-external-link"></i>
+          <span>E-Mail an training@ranger.de</span>
+        </button>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 24px; padding: 16px; font-size: 11px; color: var(--text-3);">
+      Weitere Kurse folgen in Kürze
+    </div>
+  </section>
+
+  <!-- BREAKOUTS -->
+  <section class="section" id="sec-breakouts">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Breakout Sessions</div>
+        <div class="section-sub">Reflektiere & halte fest, was du mitnimmst</div>
+      </div>
+    </div>
+
+    <div class="pdf-export-card">
+      <div class="pdf-export-title">Zusammenfassung erstellen</div>
+      <div class="pdf-export-sub">Lade deine Notizen, Maßnahmen &amp; Bewertungen als PDF herunter</div>
+      <button class="pdf-export-btn" id="pdf-export-btn" onclick="exportBreakoutsPdf()">
+        <i class="ti ti-download"></i>
+        <span>Als PDF herunterladen</span>
+      </button>
+    </div>
+
+    <div class="round-tabs">
+      <button class="round-tab active" data-round="1">Runde 1</button>
+      <button class="round-tab" data-round="2">Runde 2</button>
+      <button class="round-tab" data-round="3">Runde 3</button>
+    </div>
+    <div id="round-time-pill" style="text-align: center; font-size: 12px; color: var(--text-2); margin-bottom: 14px;"></div>
+    <div id="breakout-list"></div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section" id="sec-gallery">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Galerie</div>
+        <div class="section-sub">Eure Momente von der Reise</div>
+      </div>
+    </div>
+    <div class="gallery-actions">
+      <button class="photo-btn" onclick="triggerCamera()">
+        <i class="ti ti-camera"></i>
+        <span>Foto machen</span>
+      </button>
+      <button class="photo-btn secondary" onclick="triggerUpload()">
+        <i class="ti ti-upload"></i>
+        <span>Hochladen</span>
+      </button>
+    </div>
+    <input type="file" id="photo-input" accept="image/*" multiple />
+    <div class="gallery-filter" id="gallery-filter">
+      <button class="filter-chip active" data-gfilter="all">Alle</button>
+      <button class="filter-chip" data-gfilter="b1">Breakout 1</button>
+      <button class="filter-chip" data-gfilter="b2">Breakout 2</button>
+      <button class="filter-chip" data-gfilter="b3">Breakout 3</button>
+      <button class="filter-chip" data-gfilter="freizeit">Freizeit</button>
+    </div>
+    <div id="gallery-grid"></div>
+  </section>
+
+
+  <!-- BOTTOM NAV (Lovable style: 7 icons with active pill) -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-tab="home">
+      <div class="nav-icon-wrap"><i class="ti ti-home"></i></div>
+      <span>Home</span>
+    </button>
+    <button class="nav-btn" data-tab="agenda">
+      <div class="nav-icon-wrap"><i class="ti ti-calendar-event"></i></div>
+      <span>Agenda</span>
+    </button>
+    <button class="nav-btn" data-tab="breakouts">
+      <div class="nav-icon-wrap"><i class="ti ti-bulb"></i></div>
+      <span>Breakouts</span>
+    </button>
+    <button class="nav-btn" data-tab="gallery">
+      <div class="nav-icon-wrap"><i class="ti ti-camera"></i></div>
+      <span>Galerie</span>
+    </button>
+    <button class="nav-btn" data-tab="coaches">
+      <div class="nav-icon-wrap"><i class="ti ti-headset"></i></div>
+      <span>Coaches</span>
+    </button>
+    <button class="nav-btn" data-tab="info">
+      <div class="nav-icon-wrap"><i class="ti ti-info-circle"></i></div>
+      <span>Info</span>
+    </button>
+    <button class="nav-btn" data-tab="training">
+      <div class="nav-icon-wrap"><i class="ti ti-school"></i></div>
+      <span>Training</span>
+    </button>
+  </nav>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+    <div class="modal" id="modal" onclick="event.stopPropagation()">
+      <div class="modal-handle"></div>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()"><i class="ti ti-x"></i></button>
+    <img id="lightbox-img" alt="" />
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+  // ===== SVG ICON SYSTEM (no external dependencies) =====
+  // Inline SVG icons compatible with <i class="ti ti-NAME"></i> syntax
+  const ICONS = {
+    'home': '<path d="M5 12l-2 0l9 -9l9 9l-2 0"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"/><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"/>',
+    'calendar': '<path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M4 11h16"/><path d="M11 15h1"/><path d="M12 15v3"/>',
+    'calendar-event': '<path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M4 11h16"/><path d="M8 15h2v2h-2z"/>',
+    'bulb': '<path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7"/><path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3"/><path d="M9.7 17l4.6 0"/>',
+    'headset': '<path d="M4 14v-3a8 8 0 1 1 16 0v3"/><path d="M18 19c0 1.657 -2.686 3 -6 3"/><path d="M4 14a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2v-3z"/><path d="M15 14a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2v-3z"/>',
+    'camera': '<path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2"/><circle cx="12" cy="13" r="3"/>',
+    'info-circle': '<circle cx="12" cy="12" r="9"/><path d="M12 8v.01"/><path d="M11 12h1v4h1"/>',
+    'school': '<path d="M22 9l-10 -4l-10 4l10 4l10 -4v6"/><path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4"/>',
+    'users-group': '<path d="M10 13a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z"/><path d="M16 7a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z"/><path d="M14 14a2 2 0 1 0 0 -4a2 2 0 0 0 0 4z"/><path d="M11 17v-1a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1"/><path d="M3 17v-1a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1"/><path d="M19 16v1"/>',
+    'map-pin': '<circle cx="12" cy="11" r="3"/><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"/>',
+    'map': '<path d="M3 7l6 -3l6 3l6 -3v13l-6 3l-6 -3l-6 3z"/><path d="M9 4v13"/><path d="M15 7v13"/>',
+    'star': '<path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"/>',
+    'star-filled': '<path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" fill="currentColor"/>',
+    'arrow-right': '<path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/>',
+    'chevron-down': '<path d="M6 9l6 6l6 -6"/>',
+    'chevron-right': '<path d="M9 6l6 6l-6 6"/>',
+    'pencil': '<path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"/><path d="M13.5 6.5l4 4"/>',
+    'external-link': '<path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/><path d="M11 13l9 -9"/><path d="M15 4h5v5"/>',
+    'clock': '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',
+    'phone': '<path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/>',
+    'plane': '<path d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z"/>',
+    'building': '<path d="M3 21l18 0"/><path d="M9 8l1 0"/><path d="M9 12l1 0"/><path d="M9 16l1 0"/><path d="M14 8l1 0"/><path d="M14 12l1 0"/><path d="M14 16l1 0"/><path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16"/>',
+    'building-skyscraper': '<path d="M3 21l18 0"/><path d="M5 21v-14l8 -4v18"/><path d="M19 21v-10l-6 -4"/><path d="M9 9l0 .01"/><path d="M9 12l0 .01"/><path d="M9 15l0 .01"/><path d="M9 18l0 .01"/>',
+    'mountain': '<path d="M3 20h18l-7.5 -13l-7.5 13z"/><path d="M11 12l1 1.5l2 -3"/>',
+    'shopping-bag': '<path d="M6 8a3 3 0 0 1 3 -3h6a3 3 0 0 1 3 3l-1 12h-10z"/><path d="M9 11v-3a3 3 0 0 1 6 0v3"/>',
+    'beach': '<path d="M17.553 16.75a7.5 7.5 0 0 0 -10.606 0"/><path d="M18 3.804a6 6 0 0 0 -8.196 2.196l10.392 6a6 6 0 0 0 -2.196 -8.196z"/><path d="M16.732 10c1.658 -2.87 2.225 -5.644 1.268 -6.196c-.957 -.552 -3.075 1.326 -4.732 4.196"/><path d="M15 9l-3 5.196"/><path d="M3 19.25a2.4 2.4 0 0 1 1 -.25a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 1 .25"/>',
+    'pool': '<circle cx="12" cy="5" r="2"/><path d="M15 11v-3.5a1.5 1.5 0 0 0 -3 0"/><path d="M8 11v-4.5a1.5 1.5 0 0 1 3 0"/><path d="M2 16a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1"/><path d="M2 20a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1"/>',
+    'tent': '<path d="M20 19l-8 -14l-8 14h6l2 -3l2 3z"/><path d="M14 19l-2 -3l-2 3"/>',
+    'sailboat': '<path d="M2 20a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1"/><path d="M4 18l-1 -3h18l-1 3"/><path d="M11 12h7l-7 -9v9"/><path d="M8 7l-2 5"/>',
+    'microphone': '<rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M8 21l8 0"/><path d="M12 17l0 4"/>',
+    'sparkles': '<path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm0 -12a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm-7 12a6 6 0 0 1 6 -6a6 6 0 0 1 -6 -6a6 6 0 0 1 -6 6a6 6 0 0 1 6 6z"/>',
+    'bolt': '<path d="M13 3l0 7l6 0l-8 11l0 -7l-6 0l8 -11"/>',
+    'star-1': '<path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"/>',
+    'flag': '<path d="M5 5a5 5 0 0 1 7 0a5 5 0 0 0 7 0v9a5 5 0 0 1 -7 0a5 5 0 0 0 -7 0v-9z"/><path d="M5 21v-7"/>',
+    'currency-euro': '<path d="M17.2 7a6 7 0 1 0 0 10"/><path d="M13 10h-8m0 4h8"/>',
+    'language': '<path d="M4 5h7"/><path d="M9 3v2c0 4.418 -2.239 8 -5 8"/><path d="M5 9c0 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4 -9l4 9"/><path d="M19.1 18l-6.2 0"/>',
+    'sun': '<circle cx="12" cy="12" r="4"/><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"/>',
+    'plug': '<path d="M9.785 6l8.215 8.215l-2.054 2.054a5.81 5.81 0 1 1 -8.215 -8.215l2.054 -2.054z"/><path d="M4 20l3.5 -3.5"/><path d="M15 4l-3.5 3.5"/><path d="M20 9l-3.5 3.5"/>',
+    'shirt': '<path d="M15 4l6 2v5h-3v8a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1v-8h-3v-5l6 -2a3 3 0 0 0 6 0"/>',
+    'luggage': '<path d="M6 6m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z"/><path d="M8 6v-2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v2"/><path d="M6 10h12"/><path d="M9 14v4"/><path d="M15 14v4"/>',
+    'message-circle': '<path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1"/><path d="M12 12l0 .01"/><path d="M8 12l0 .01"/><path d="M16 12l0 .01"/>',
+    'brand-whatsapp': '<path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"/><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"/>',
+    'emergency-bed': '<path d="M19 10h-14a2 2 0 0 0 -2 2v5h18v-5a2 2 0 0 0 -2 -2z"/><path d="M3 17v3"/><path d="M21 17v3"/><path d="M9 4v3a2 2 0 0 0 4 0v-3"/><path d="M11 4v6"/>',
+    'heart': '<path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.566z"/>',
+    'target-arrow': '<path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path d="M12 7a5 5 0 1 0 5 5"/><path d="M13 3.055a9 9 0 1 0 7.941 7.945"/><path d="M15 6v3h3l3 -3h-3v-3z"/><path d="M15 9l-3 3"/>',
+    'check': '<path d="M5 12l5 5l10 -10"/>',
+    'x': '<path d="M18 6l-12 12"/><path d="M6 6l12 12"/>',
+    'upload': '<path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 9l5 -5l5 5"/><path d="M12 4l0 12"/>',
+    'download': '<path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/>',
+    'photo': '<path d="M15 8h.01"/><path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z"/><path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5"/><path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3"/>',
+    'photo-plus': '<path d="M15 8h.01"/><path d="M12.5 21h-6.5a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v6.5"/><path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5"/><path d="M14 14l1 -1c.679 -.653 1.473 -.829 2.214 -.526"/><path d="M16 19h6"/><path d="M19 16v6"/>',
+    'trash': '<path d="M4 7l16 0"/><path d="M10 11l0 6"/><path d="M14 11l0 6"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/>',
+    'users': '<circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/>'
+  };
+
+  function renderIcons(root) {
+    (root || document).querySelectorAll('i.ti, .ti:not(svg)').forEach(el => {
+      if (el.dataset.iconRendered) return;
+      const cls = el.className || '';
+      const m = cls.match(/ti-([\w-]+)/);
+      if (!m) return;
+      const name = m[1];
+      const path = ICONS[name] || ICONS['photo']; // fallback
+      el.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">${path}</svg>`;
+      el.dataset.iconRendered = '1';
+    });
+  }
+
+  // iOS-Safari-safe: render immediately AND after DOM ready AND after window load
+  renderIcons();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => renderIcons());
+  } else {
+    renderIcons();
+  }
+  window.addEventListener('load', () => renderIcons());
+
+  // Patch insertAdjacentHTML to render icons after dynamic insertion
+  const _origInsert = Element.prototype.insertAdjacentHTML;
+  Element.prototype.insertAdjacentHTML = function(...args) {
+    const r = _origInsert.apply(this, args);
+    renderIcons(this);
+    return r;
+  };
+
+  // Patch innerHTML setter on Element to also render icons
+  const _origInnerHTMLDesc = Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML');
+  if (_origInnerHTMLDesc && _origInnerHTMLDesc.set) {
+    Object.defineProperty(Element.prototype, 'innerHTML', {
+      configurable: true,
+      get: _origInnerHTMLDesc.get,
+      set: function(val) {
+        _origInnerHTMLDesc.set.call(this, val);
+        try { renderIcons(this); } catch (e) {}
+      }
+    });
+  }
+
+  // MutationObserver as safety net (less aggressive than before to avoid iOS perf issues)
+  if (window.MutationObserver) {
+    const _iconObserver = new MutationObserver(muts => {
+      let needsRender = false;
+      for (const m of muts) {
+        if (m.addedNodes.length) { needsRender = true; break; }
+      }
+      if (needsRender) renderIcons();
+    });
+    // Wait for body to exist
+    if (document.body) {
+      _iconObserver.observe(document.body, { childList: true, subtree: true });
+    } else {
+      document.addEventListener('DOMContentLoaded', () => {
+        _iconObserver.observe(document.body, { childList: true, subtree: true });
+      });
+    }
+  }
+</script>
+
+<script>
+  // ===== DATA =====
+  const coaches = [
+    { id: 'c1',  type: 'sp', name: 'Kevin Schwar',           role: 'Sales Partner · Chemnitz',         since: '01.11.2022', bg: ['Gelernter KFZ-Mechatroniker','Soldat 8 Jahre mit Außeneinsatz','Fahrzeugtechnik','In den Semesterferien als PR zu Ranger'], topics: ['Planung','Struktur'], phone: '01511 0105060' },
+    { id: 'c2',  type: 'sp', name: 'Marko Reinke',           role: 'Sales Partner · Erfurt',           since: '01.08.2005', bg: ['Über 20 Jahre Erfahrung'], topics: ['Mitarbeiterbindung'], phone: '01516 5526102' },
+    { id: 'c3',  type: 'sp', name: 'Alan Rashed',            role: 'Sales Partner · Oldenburg',        since: '02.09.2025', bg: ['Realschule mit 3,4 bestanden','Keine Ausbildung','Pizza Lieferant'], topics: ['Persönliche Weiterentwicklung','Wie werde ich mein bestes Selbst'], phone: '0175 1020104' },
+    { id: 'c4',  type: 'sp', name: 'Sven W. Peter',          role: 'Sales Partner · Hannover',         since: '01.06.2005', bg: ['32 Jahre Erfahrung'], topics: ['Struktur im Deal','Mitarbeiterbindung','NVM-Push','Qualität & Tools und Reports'], phone: '0172 5478090' },
+    { id: 'c5',  type: 'sp', name: 'Antonio Panucci',        role: 'Sales Partner · Eschborn',         since: '17.05.2018', bg: ['Infos folgen'], topics: ['Themen folgen'], phone: '01515 1709474' },
+    { id: 'c6',  type: 'sp', name: 'Pedram Mesrabadi Fard',  role: 'Sales Partner · Hamburg',          since: '01.01.2023', bg: ['Versicherungsvertreter','Pizza Lieferant'], topics: ['Führung','Mindset'], phone: '0163 8527374' },
+    { id: 'c7',  type: 'sp', name: 'Nektarios Kasimis',      role: 'Sales Partner · Schweinfurt',      since: '01.01.2025', bg: ['Verschiedene Schulen ohne viel Erfolg','Als Lagerist über Wasser gehalten','Am Tiefpunkt Motivation gefunden'], topics: ['Motivation / Inspiration / Hunger wecken','Gebietsplanung','Team Aufbau'], phone: '0175 8332200' },
+    { id: 'c8',  type: 'sp', name: 'Jerome Gonda',           role: 'Sales Partner · Berlin',           since: '01.09.2020', bg: ['Sollte erst Mathelehrer werden','Wurde dann Fliesenleger','Knie kaputt und ab zu Ranger'], topics: ['Durchhaltevermögen','Negative richtig definieren','Bodenständigkeit'], phone: '01511 7239237' },
+    { id: 'c9',  type: 'sp', name: 'Lisa-Marie Darac',       role: 'Sales Partner · Magdeburg',        since: '02.01.2023', bg: ['Einzelhandel (Abercrombie & Fitch)','Duales Studium in Marketing Management geplant','Studium für Ranger abgesagt'], topics: ['Einstellung beibehalten','Ausbilden & Anleiten','Mindset: Warum bin ich hier?'], phone: '0162 7957924', avatarColor: 'coral' },
+    // Head Office
+    { id: 'h1', type: 'ho', name: 'Mikaela Ioannou',  role: 'Head of Social Marketing',         since: 'Januar 2023',      bg: ['Bei Ranger seit Januar 2023'], topics: ['Marketing','Social Media','Corporate Communication','Content: Filme & Fotos'], phone: '0172 2155421', avatarColor: 'coral' },
+    { id: 'h2', type: 'ho', name: 'Lilian Moody',     role: 'Teamlead Sales Management · SPM',  since: 'November 2023',    bg: ['Teamlead seit September 2025','Betreut: Marco Pamer, Aaron Marquardt, Marco Dehn'], topics: ['Events, Reisen & Incentives','Telekom Kleidung','KPI Performance'], phone: '0160 4380524', avatarColor: 'coral' },
+    { id: 'h3', type: 'ho', name: 'Tim Albers',       role: 'Senior PM Events',                 since: 'August 2023',      bg: ['Senior Projektmanager seit Juli 2024'], topics: ['Events, Reisen & Incentives','An- und Abreise (Flug + Hotel)'], phone: '0151 22725194', avatarColor: 'coral' },
+    { id: 'h4', type: 'ho', name: 'Simone Elsner',    role: 'Director Sales Training',          since: 'Infos folgen',     bg: ['Infos folgen'], topics: ['Sales Training'], phone: '', avatarColor: 'coral' },
+    { id: 'h5', type: 'ho', name: 'Florian Jack',     role: 'MA Corporate Communication',       since: 'Infos folgen',     bg: ['Infos folgen'], topics: ['Communication'], phone: '', avatarColor: 'coral' },
+    { id: 'h6', type: 'ho', name: 'Justin Jakobi',    role: 'Vertriebstrainer',                 since: 'Mai 2024',         bg: ['Juni 2020: Guy bei Ercan Öztürk in Hagen','November 2021: Sales Partner in Marl','Mai 2024: Vertriebs- und Kommunikationscoach Head Office','Mai 2026: Technischer Lead für die Sales Coaches'], topics: ['Einsätze im Deal','Präsenz Workshops','Vertriebs- und Kommunikations Coaching','Einsatzplanung der Sales Coaches'], phone: '0171 5363788', avatarColor: 'coral' },
+    { id: 'h7', type: 'ho', name: 'Tayfun Kaplan',    role: 'SPM',                              since: 'Infos folgen',     bg: ['Infos folgen'], topics: ['Sales Management'], phone: '', avatarColor: 'coral' },
+    { id: 'h8', type: 'ho', name: 'Barbara Schaper',  role: 'SPM',                              since: 'Infos folgen',     bg: ['Infos folgen'], topics: ['Sales Management'], phone: '', avatarColor: 'coral' },
+    { id: 'h9', type: 'ho', name: 'Simone Washeim',   role: 'Director Sales Recruiting',        since: 'Februar 2020',     bg: ['Director seit Dezember 2022'], topics: ['Zentralrecruiting','Locals und PR Experts','Candidate Journey bis zur Einstellung','Recruiting Incentives'], phone: '0211 20008404', avatarColor: 'coral' },
+  ];
+
+  const groups = {
+    '1': { color: 'var(--blue-500)', theme: 'Breakout Thema 1', names: ['Ahmad H.','Ahmet A.','Ardian S.','Can W.','Chris A.','Egemen C.','Hasan C.','Hasan F.','Jacob S.','Lejla A.','Melisa K.','Robert G.','Robin P.','Sam B.','Selcuk G.','Sezer Selyaydin A.','Sven W.'] },
+    '2': { color: 'var(--coral-500)', theme: 'Breakout Thema 2', names: ['Alexander B.','Christopher W.','Elias H.','Erion M.','Julian Gabriel G.','Kjell K.','Loay D.','Luisa T.','Mahan M.','Maik S.','Maurice Frank L.','Pietro D.','Robert T.','Roman R.','Sadek L.','Schemus Ö.','Stefan R.'] },
+    '3': { color: 'var(--teal-500)', theme: 'Breakout Thema 3', names: ['Adrian R.','Anil U.','Calvin B.','Fatlum B.','Laureen J.','Lucca Luciano K.','Luei H.','Mnjer Z.','Ömercan K.','Petar W.','Remus N.','Rinor H.','Santo C.','Tim S.','Yusuf E.','Albin H.','Rodion S.'] }
+  };
+
+  // ===== HELPERS =====
+  function initials(name) {
+    const parts = name.replace(/\./g, '').split(' ').filter(Boolean);
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+
+  function goTo(tab) {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.id === 'sec-' + tab));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.nav-btn').forEach(b => b.addEventListener('click', () => goTo(b.dataset.tab)));
+
+  // ===== COUNTDOWN ===== (placeholder date - update when finalized)
+  const targetDate = new Date('2026-06-11T14:00:00+01:00').getTime();
+  function updateCountdown() {
+    const diff = Math.max(0, targetDate - Date.now());
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor(diff / 3600000) % 24;
+    const m = Math.floor(diff / 60000) % 60;
+    const s = Math.floor(diff / 1000) % 60;
+    document.getElementById('cd-d').textContent = d;
+    document.getElementById('cd-h').textContent = String(h).padStart(2, '0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2, '0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ===== COACHES =====
+  function renderCoaches(filter = 'all') {
+    const list = document.getElementById('coach-list');
+    const filtered = coaches.filter(c => filter === 'all' || c.type === filter);
+    list.innerHTML = filtered.map(c => `
+      <div class="coach-card" data-id="${c.id}">
+        <div class="avatar ${c.avatarColor || ''}">${initials(c.name)}</div>
+        <div class="coach-info">
+          <div class="coach-name">${c.name}</div>
+          <div class="coach-role">${c.role}</div>
+          <div class="coach-topics">${c.topics.join(' · ')}</div>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+    `).join('');
+    list.querySelectorAll('.coach-card').forEach(el => {
+      el.addEventListener('click', () => openCoach(el.dataset.id));
+    });
+  }
+  renderCoaches();
+
+  document.querySelectorAll('#coach-filter .filter-chip').forEach(c => {
+    c.addEventListener('click', () => {
+      document.querySelectorAll('#coach-filter .filter-chip').forEach(x => x.classList.remove('active'));
+      c.classList.add('active');
+      renderCoaches(c.dataset.filter);
+    });
+  });
+
+  function openCoach(id) {
+    const c = coaches.find(x => x.id === id);
+    if (!c) return;
+    document.getElementById('modal-content').innerHTML = `
+      <div class="modal-header">
+        <div class="modal-avatar ${c.avatarColor ? '' : ''}" style="${c.avatarColor === 'coral' ? 'background: var(--coral-500);' : ''}">${initials(c.name)}</div>
+        <div>
+          <div class="modal-name">${c.name}</div>
+          <div class="modal-role">${c.role}</div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">${c.type === 'sp' ? 'Sales Partner seit' : 'Bei Ranger seit'}</div>
+        <div style="font-size: 14px; font-weight: 500;">${c.since}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Hintergrund</div>
+        <ul class="modal-list">${c.bg.map(b => `<li>${b}</li>`).join('')}</ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">${c.type === 'sp' ? 'Coach für diese Themen' : 'Ansprechpartner für'}</div>
+        <ul class="modal-list">${c.topics.map(t => `<li>${t}</li>`).join('')}</ul>
+      </div>
+      ${c.phone ? `<button class="action-btn" onclick="window.location.href='tel:${c.phone.replace(/\s/g, '')}'"><i class="ti ti-phone"></i><span>${c.phone}</span><i class="ti ti-chevron-right chevron"></i></button>` : ''}
+    `;
+    document.getElementById('modal-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(e) {
+    if (e && e.target.id !== 'modal-overlay') return;
+    document.getElementById('modal-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // ===== GROUPS =====
+  function renderGroup(id) {
+    const g = groups[id];
+    document.getElementById('group-title').textContent = 'Gruppe ' + id;
+    document.getElementById('group-count').textContent = g.names.length + ' Teilnehmer';
+    const pill = document.getElementById('group-pill');
+    pill.textContent = g.theme;
+    pill.style.background = g.color;
+    document.getElementById('participant-list').innerHTML = g.names.map(n => `
+      <div class="participant">
+        <div class="p-avatar" style="background: ${g.color};">${initials(n)}</div>
+        <span class="p-name">${n}</span>
+      </div>
+    `).join('');
+  }
+  renderGroup('1');
+
+  document.querySelectorAll('.group-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.group-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      renderGroup(b.dataset.group);
+    });
+  });
+
+  // ===== CHECKLIST =====
+  function loadChecklist() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('pc4t-checklist') || '{}');
+      document.querySelectorAll('.checklist-item').forEach(el => {
+        if (saved[el.dataset.id]) el.classList.add('checked');
+      });
+    } catch (e) {}
+  }
+  function saveChecklist() {
+    const data = {};
+    document.querySelectorAll('.checklist-item').forEach(el => {
+      data[el.dataset.id] = el.classList.contains('checked');
+    });
+    try { localStorage.setItem('pc4t-checklist', JSON.stringify(data)); } catch (e) {}
+  }
+  document.querySelectorAll('.checklist-item').forEach(el => {
+    el.addEventListener('click', () => {
+      el.classList.toggle('checked');
+      saveChecklist();
+    });
+  });
+  loadChecklist();
+
+  // ===== TOAST =====
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  // ===== HOTEL CAROUSEL DOTS =====
+  const carousel = document.getElementById('hotel-carousel');
+  const dotsWrap = document.getElementById('carousel-dots');
+  const slides = carousel.querySelectorAll('.hotel-slide');
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dotsWrap.appendChild(dot);
+  });
+  carousel.addEventListener('scroll', () => {
+    const slideWidth = slides[0].offsetWidth + 12;
+    const idx = Math.round(carousel.scrollLeft / slideWidth);
+    dotsWrap.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  });
+
+  // ===== BREAKOUTS =====
+  const breakoutRounds = {
+    '1': { time: '10:00 – 11:10 Uhr · Freitag' },
+    '2': { time: '11:40 – 12:55 Uhr · Freitag' },
+    '3': { time: '13:45 – 14:55 Uhr · Freitag' }
+  };
+  // Theme placeholders + coaches per group (3 coaches per group per round - placeholders for now)
+  // When real data is known, just update these arrays.
+  const breakoutData = {
+    '1': [
+      { group: '1', theme: 'Breakout Thema 1', coaches: ['Sven W. Peter', 'Marko Reinke', 'Kevin Schwar'] },
+      { group: '2', theme: 'Breakout Thema 2', coaches: ['Pedram Mesrabadi Fard', 'Jerome Gonda', 'Alan Rashed'] },
+      { group: '3', theme: 'Breakout Thema 3', coaches: ['Nektarios Kasimis', 'Lisa-Marie Darac', 'Antonio Panucci'] }
+    ],
+    '2': [
+      { group: '1', theme: 'Breakout Thema 2', coaches: ['Pedram Mesrabadi Fard', 'Jerome Gonda', 'Alan Rashed'] },
+      { group: '2', theme: 'Breakout Thema 3', coaches: ['Nektarios Kasimis', 'Lisa-Marie Darac', 'Antonio Panucci'] },
+      { group: '3', theme: 'Breakout Thema 1', coaches: ['Sven W. Peter', 'Marko Reinke', 'Kevin Schwar'] }
+    ],
+    '3': [
+      { group: '1', theme: 'Breakout Thema 3', coaches: ['Nektarios Kasimis', 'Lisa-Marie Darac', 'Antonio Panucci'] },
+      { group: '2', theme: 'Breakout Thema 1', coaches: ['Sven W. Peter', 'Marko Reinke', 'Kevin Schwar'] },
+      { group: '3', theme: 'Breakout Thema 2', coaches: ['Pedram Mesrabadi Fard', 'Jerome Gonda', 'Alan Rashed'] }
+    ]
+  };
+
+  function renderBreakouts(round) {
+    document.getElementById('round-time-pill').innerHTML = `<i class="ti ti-clock" style="font-size: 12px; vertical-align: -2px; margin-right: 4px;"></i>${breakoutRounds[round].time}`;
+    const list = document.getElementById('breakout-list');
+    list.innerHTML = breakoutData[round].map((b, idx) => {
+      const key = `r${round}-g${b.group}`;
+      const data = breakoutState[key] || {};
+      const notes = data.notes || '';
+      const c1 = (data.commitments || [])[0] || '';
+      const c2 = (data.commitments || [])[1] || '';
+      const c3 = (data.commitments || [])[2] || '';
+      const rating = data.rating || 0;
+      const photos = data.photos || [];
+      return `
+        <div class="breakout-acc g${b.group}" data-key="${key}">
+          <div class="breakout-acc-head" onclick="toggleBreakout(this)">
+            <div class="breakout-number">0${idx + 1}</div>
+            <div class="breakout-acc-title-wrap">
+              <div class="breakout-acc-title">${b.theme}</div>
+              <div class="breakout-acc-coaches">${b.coaches.join(' · ')}</div>
+            </div>
+            <i class="ti ti-chevron-down breakout-acc-chevron"></i>
+          </div>
+          <div class="breakout-acc-body"><div class="breakout-acc-inner">
+
+            <div class="block-label"><i class="ti ti-pencil"></i> Notizen</div>
+            <textarea class="breakout-textarea" placeholder="Erkenntnisse, Ideen…" data-field="notes" data-key="${key}">${escapeHtml(notes)}</textarea>
+            <div class="breakout-action-row">
+              <span class="mini-status" data-status="${key}"></span>
+              <button class="link-btn" onclick="saveBreakout('${key}')">Speichern</button>
+            </div>
+
+            <div class="block-label"><i class="ti ti-star-filled"></i> Diese 3 Dinge setze ich ab Montag um</div>
+            <div class="commitment-row">
+              <div class="commitment-num">1</div>
+              <input type="text" class="commitment-input" placeholder="Maßnahme 1…" data-field="c1" data-key="${key}" value="${escapeHtml(c1)}" />
+            </div>
+            <div class="commitment-row">
+              <div class="commitment-num">2</div>
+              <input type="text" class="commitment-input" placeholder="Maßnahme 2…" data-field="c2" data-key="${key}" value="${escapeHtml(c2)}" />
+            </div>
+            <div class="commitment-row">
+              <div class="commitment-num">3</div>
+              <input type="text" class="commitment-input" placeholder="Maßnahme 3…" data-field="c3" data-key="${key}" value="${escapeHtml(c3)}" />
+            </div>
+
+            <div class="block-label" style="text-transform: uppercase;">Wie sicher fühlst du dich jetzt in diesem Thema?</div>
+            <div class="stars" data-stars="${key}">
+              ${[1,2,3,4,5].map(n => `<button class="star-btn ${n <= rating ? 'filled' : ''}" onclick="setRating('${key}', ${n})"><i class="ti ti-star${n <= rating ? '-filled' : ''}"></i></button>`).join('')}
+            </div>
+
+            <div class="block-label"><i class="ti ti-camera"></i> Fotos</div>
+            <button class="breakout-photo-btn" onclick="addBreakoutPhoto('${key}')">
+              <i class="ti ti-camera"></i> Foto aufnehmen
+            </button>
+            ${photos.length === 0 ? `
+              <div class="breakout-photo-empty">
+                <i class="ti ti-photo"></i>
+                <div class="breakout-photo-empty-text">Noch keine Fotos</div>
+              </div>
+            ` : `
+              <div class="breakout-photos">
+                ${photos.map((p, pi) => `<div class="breakout-photo-tile" onclick="openLightbox('${p}')"><img src="${p}" alt="" /></div>`).join('')}
+              </div>
+            `}
+
+          </div></div>
+        </div>
+      `;
+    }).join('');
+
+    // Re-bind input change listeners
+    list.querySelectorAll('input, textarea').forEach(el => {
+      el.addEventListener('input', () => {
+        const key = el.dataset.key;
+        const field = el.dataset.field;
+        if (!breakoutState[key]) breakoutState[key] = {};
+        if (field === 'notes') breakoutState[key].notes = el.value;
+        else if (field.startsWith('c')) {
+          if (!breakoutState[key].commitments) breakoutState[key].commitments = ['', '', ''];
+          const ci = parseInt(field.substring(1)) - 1;
+          breakoutState[key].commitments[ci] = el.value;
+        }
+      });
+    });
+  }
+
+  // Breakout state (notes, commitments, rating, photos)
+  let breakoutState = {};
+  try { breakoutState = JSON.parse(localStorage.getItem('pc4t-breakouts') || '{}'); } catch (e) {}
+
+  function persistBreakouts() {
+    try { localStorage.setItem('pc4t-breakouts', JSON.stringify(breakoutState)); }
+    catch (e) { showToast('Speicher voll'); }
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  }
+
+  function toggleBreakout(headEl) {
+    const acc = headEl.parentElement;
+    acc.classList.toggle('open');
+  }
+  window.toggleBreakout = toggleBreakout;
+
+  function saveBreakout(key) {
+    persistBreakouts();
+    const s = document.querySelector(`[data-status="${key}"]`);
+    if (s) {
+      s.textContent = '✓ Gespeichert';
+      setTimeout(() => { s.textContent = ''; }, 2000);
+    }
+  }
+  window.saveBreakout = saveBreakout;
+
+  function setRating(key, n) {
+    if (!breakoutState[key]) breakoutState[key] = {};
+    breakoutState[key].rating = breakoutState[key].rating === n ? 0 : n;
+    persistBreakouts();
+    // Re-render only the stars
+    const wrap = document.querySelector(`[data-stars="${key}"]`);
+    if (wrap) {
+      const r = breakoutState[key].rating;
+      wrap.innerHTML = [1,2,3,4,5].map(i => `<button class="star-btn ${i <= r ? 'filled' : ''}" onclick="setRating('${key}', ${i})"><i class="ti ti-star${i <= r ? '-filled' : ''}"></i></button>`).join('');
+    }
+  }
+  window.setRating = setRating;
+
+  function addBreakoutPhoto(key) {
+    const inp = document.createElement('input');
+    inp.type = 'file';
+    inp.accept = 'image/*';
+    inp.setAttribute('capture', 'environment');
+    inp.onchange = async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const dataUrl = await resizeImage(file, 1000);
+        if (!breakoutState[key]) breakoutState[key] = {};
+        if (!breakoutState[key].photos) breakoutState[key].photos = [];
+        breakoutState[key].photos.unshift(dataUrl);
+        persistBreakouts();
+        // Also push into main gallery with tag b1/b2/b3 based on key
+        const round = key.charAt(1);
+        photos.unshift({ src: dataUrl, tag: 'b' + round, ts: Date.now() });
+        savePhotos();
+        // Re-render current breakout round
+        const activeTab = document.querySelector('.round-tab.active');
+        if (activeTab) {
+          const openKeys = Array.from(document.querySelectorAll('.breakout-acc.open')).map(a => a.dataset.key);
+          renderBreakouts(activeTab.dataset.round);
+          // Reopen previously open accordions
+          openKeys.forEach(k => {
+            const acc = document.querySelector(`.breakout-acc[data-key="${k}"]`);
+            if (acc) acc.classList.add('open');
+          });
+        }
+        showToast('Foto hinzugefügt');
+      } catch (err) {
+        showToast('Foto konnte nicht geladen werden');
+      }
+    };
+    inp.click();
+  }
+  window.addBreakoutPhoto = addBreakoutPhoto;
+
+  renderBreakouts('1');
+
+  document.querySelectorAll('.round-tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.round-tab').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      renderBreakouts(t.dataset.round);
+    });
+  });
+
+  // Agenda accordion
+  function toggleDay(headEl) {
+    const sec = headEl.parentElement;
+    sec.classList.toggle('open');
+  }
+  window.toggleDay = toggleDay;
+
+  // ===== GALLERY =====
+  let photos = [];
+  try { photos = JSON.parse(localStorage.getItem('pc4t-photos') || '[]'); } catch (e) {}
+  let galleryFilter = 'all';
+
+  function savePhotos() {
+    try { localStorage.setItem('pc4t-photos', JSON.stringify(photos)); }
+    catch (e) { showToast('Speicher voll – ältere Fotos löschen'); }
+  }
+
+  function renderGallery() {
+    const grid = document.getElementById('gallery-grid');
+    const filtered = photos.filter(p => galleryFilter === 'all' || p.tag === galleryFilter);
+    if (filtered.length === 0) {
+      grid.outerHTML = `<div class="gallery-empty" id="gallery-grid">
+        <i class="ti ti-photo-plus"></i>
+        <div class="gallery-empty-text">Noch keine Fotos${galleryFilter !== 'all' ? ' in dieser Kategorie' : ''}.<br />Mach das erste!</div>
+      </div>`;
+      return;
+    }
+    const tags = { b1: 'Breakout 1', b2: 'Breakout 2', b3: 'Breakout 3', freizeit: 'Freizeit' };
+    grid.outerHTML = `<div class="gallery-grid" id="gallery-grid">${filtered.map((p, i) => `
+      <div class="gallery-tile" data-idx="${photos.indexOf(p)}">
+        <img src="${p.src}" alt="" loading="lazy" />
+        ${p.tag ? `<span class="gallery-tile-tag">${tags[p.tag] || p.tag}</span>` : ''}
+        <button class="gallery-tile-del" onclick="event.stopPropagation(); deletePhoto(${photos.indexOf(p)})"><i class="ti ti-trash"></i></button>
+      </div>
+    `).join('')}</div>`;
+    document.querySelectorAll('.gallery-tile').forEach(t => {
+      t.addEventListener('click', () => openLightbox(photos[t.dataset.idx].src));
+    });
+  }
+  renderGallery();
+
+  document.querySelectorAll('#gallery-filter .filter-chip').forEach(c => {
+    c.addEventListener('click', () => {
+      document.querySelectorAll('#gallery-filter .filter-chip').forEach(x => x.classList.remove('active'));
+      c.classList.add('active');
+      galleryFilter = c.dataset.gfilter;
+      renderGallery();
+    });
+  });
+
+  const photoInput = document.getElementById('photo-input');
+  function triggerCamera() {
+    photoInput.setAttribute('capture', 'environment');
+    photoInput.click();
+  }
+  function triggerUpload() {
+    photoInput.removeAttribute('capture');
+    photoInput.click();
+  }
+  window.triggerCamera = triggerCamera;
+  window.triggerUpload = triggerUpload;
+
+  photoInput.addEventListener('change', async (e) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
+    const tag = prompt('Kategorie? b1, b2, b3 (Breakouts), freizeit – leer lassen für „Alle"', '') || '';
+    for (const file of files) {
+      try {
+        const dataUrl = await resizeImage(file, 1200);
+        photos.unshift({ src: dataUrl, tag: tag.toLowerCase().trim(), ts: Date.now() });
+      } catch (err) { showToast('Foto konnte nicht geladen werden'); }
+    }
+    savePhotos();
+    renderGallery();
+    showToast(files.length + (files.length === 1 ? ' Foto hinzugefügt' : ' Fotos hinzugefügt'));
+    photoInput.value = '';
+  });
+
+  function resizeImage(file, maxDim) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+          let { width, height } = img;
+          if (width > height && width > maxDim) { height *= maxDim / width; width = maxDim; }
+          else if (height > maxDim) { width *= maxDim / height; height = maxDim; }
+          const canvas = document.createElement('canvas');
+          canvas.width = width; canvas.height = height;
+          canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL('image/jpeg', 0.82));
+        };
+        img.onerror = reject;
+        img.src = reader.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function deletePhoto(idx) {
+    if (!confirm('Foto wirklich löschen?')) return;
+    photos.splice(idx, 1);
+    savePhotos();
+    renderGallery();
+  }
+  window.deletePhoto = deletePhoto;
+
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  window.openLightbox = openLightbox;
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  window.closeLightbox = closeLightbox;
+
+  // ===== PARTICIPANT DROPDOWN =====
+  function toggleParticipantDropdown() {
+    document.getElementById('participant-dropdown').classList.toggle('open');
+  }
+  window.toggleParticipantDropdown = toggleParticipantDropdown;
+
+  // ===== TRAINING =====
+  function openTrainingLink(url) {
+    if (!url || url.includes('example.com')) {
+      showToast('Link wird in Kürze hinterlegt');
+      return;
+    }
+    window.open(url, '_blank');
+  }
+  window.openTrainingLink = openTrainingLink;
+
+  // ===== PDF EXPORT =====
+  async function exportBreakoutsPdf() {
+    const btn = document.getElementById('pdf-export-btn');
+    if (!window.jspdf) {
+      showToast('PDF-Library lädt noch – kurz warten');
+      return;
+    }
+    btn.disabled = true;
+    btn.querySelector('span').textContent = 'PDF wird erstellt…';
+
+    try {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+      const pageW = 210;
+      const pageH = 297;
+      const marginX = 18;
+      const contentW = pageW - 2 * marginX;
+      let y = 20;
+
+      // Brand colors
+      const NAVY = [15, 37, 71];
+      const CORAL = [232, 99, 58];
+      const TEXT = [10, 27, 54];
+      const MUTED = [95, 94, 90];
+      const LIGHT = [200, 200, 200];
+
+      function ensureSpace(needed) {
+        if (y + needed > pageH - 20) {
+          addFooter();
+          doc.addPage();
+          y = 20;
+        }
+      }
+      function addFooter() {
+        doc.setFontSize(8);
+        doc.setTextColor(...MUTED);
+        doc.setFont('helvetica', 'normal');
+        doc.text('Presidents Club for Trainers \'26 · Gran Canaria', marginX, pageH - 10);
+        doc.text('Seite ' + doc.internal.getNumberOfPages(), pageW - marginX, pageH - 10, { align: 'right' });
+      }
+      function hline(c) {
+        doc.setDrawColor(...(c || LIGHT));
+        doc.setLineWidth(0.3);
+        doc.line(marginX, y, pageW - marginX, y);
+      }
+
+      // ===== Cover =====
+      doc.setFillColor(...NAVY);
+      doc.rect(0, 0, pageW, 80, 'F');
+      doc.setFillColor(...CORAL);
+      doc.rect(0, 78, pageW, 3, 'F');
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.text('PC4T \'26 · GRAN CANARIA', marginX, 30);
+
+      doc.setFontSize(26);
+      doc.text('Deine Zusammenfassung', marginX, 50);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(12);
+      doc.setTextColor(232, 99, 58);
+      doc.text('Breakout Sessions — Notizen, Maßnahmen & Reflexion', marginX, 62);
+
+      y = 100;
+      doc.setTextColor(...MUTED);
+      doc.setFontSize(10);
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' });
+      doc.text('Erstellt am ' + dateStr, marginX, y);
+      y += 14;
+
+      // ===== Loop rounds =====
+      const rounds = ['1', '2', '3'];
+      const roundLabels = {
+        '1': 'Runde 1 · 10:00 – 11:10 Uhr · Freitag',
+        '2': 'Runde 2 · 11:40 – 12:55 Uhr · Freitag',
+        '3': 'Runde 3 · 13:45 – 14:55 Uhr · Freitag'
+      };
+
+      for (const r of rounds) {
+        ensureSpace(20);
+        // Round heading
+        doc.setFillColor(...NAVY);
+        doc.roundedRect(marginX, y - 5, contentW, 10, 1.5, 1.5, 'F');
+        doc.setTextColor(255, 255, 255);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(11);
+        doc.text(roundLabels[r], marginX + 4, y + 1.5);
+        y += 12;
+
+        for (const b of breakoutData[r]) {
+          const key = `r${r}-g${b.group}`;
+          const data = breakoutState[key] || {};
+          const notes = (data.notes || '').trim();
+          const commitments = (data.commitments || ['', '', '']).map(c => (c || '').trim());
+          const rating = data.rating || 0;
+
+          ensureSpace(40);
+
+          // Theme title
+          doc.setTextColor(...TEXT);
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(13);
+          const themeTitle = `${b.theme}  ·  Gruppe ${b.group}`;
+          doc.text(themeTitle, marginX, y);
+          y += 5;
+
+          // Coaches subline
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(9);
+          doc.setTextColor(...CORAL);
+          doc.text('Coaches: ' + b.coaches.join(' · '), marginX, y);
+          y += 6;
+
+          // Notizen
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(9);
+          doc.setTextColor(...CORAL);
+          doc.text('NOTIZEN', marginX, y);
+          y += 4;
+
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(10);
+          doc.setTextColor(...TEXT);
+          const notesContent = notes || '— keine Notizen —';
+          const notesLines = doc.splitTextToSize(notesContent, contentW);
+          ensureSpace(notesLines.length * 5 + 4);
+          if (!notes) doc.setTextColor(...MUTED);
+          doc.text(notesLines, marginX, y);
+          y += notesLines.length * 5 + 3;
+          doc.setTextColor(...TEXT);
+
+          // Commitments
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(9);
+          doc.setTextColor(...CORAL);
+          doc.text('DIESE 3 DINGE SETZE ICH AB MONTAG UM', marginX, y);
+          y += 4;
+
+          for (let i = 0; i < 3; i++) {
+            ensureSpace(7);
+            const c = commitments[i];
+            // Number circle
+            doc.setFillColor(...NAVY);
+            doc.circle(marginX + 2.5, y - 0.5, 2.5, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(8);
+            doc.text(String(i + 1), marginX + 2.5, y + 0.7, { align: 'center' });
+
+            // Text
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(...(c ? TEXT : MUTED));
+            const cLines = doc.splitTextToSize(c || '—', contentW - 10);
+            doc.text(cLines, marginX + 8, y + 0.5);
+            y += Math.max(6, cLines.length * 5);
+          }
+          y += 2;
+
+          // Confidence rating
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(9);
+          doc.setTextColor(...CORAL);
+          doc.text('WIE SICHER FÜHLST DU DICH JETZT IN DIESEM THEMA?', marginX, y);
+          y += 5;
+
+          // Star rating
+          for (let i = 1; i <= 5; i++) {
+            const cx = marginX + (i - 1) * 6 + 2.5;
+            const cy = y + 1;
+            if (i <= rating) {
+              doc.setFillColor(239, 159, 39); // amber
+              drawStar(doc, cx, cy, 2.3, true);
+            } else {
+              doc.setDrawColor(...LIGHT);
+              doc.setFillColor(255, 255, 255);
+              drawStar(doc, cx, cy, 2.3, false);
+            }
+          }
+          // Rating label
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(9);
+          doc.setTextColor(...MUTED);
+          doc.text(rating ? `${rating} / 5` : 'nicht bewertet', marginX + 36, y + 2);
+          y += 8;
+
+          // Separator
+          hline();
+          y += 6;
+        }
+        y += 4;
+      }
+
+      addFooter();
+      const filename = `PC4T-26-Zusammenfassung-${now.toISOString().slice(0, 10)}.pdf`;
+      doc.save(filename);
+      showToast('PDF wurde gespeichert');
+    } catch (err) {
+      console.error(err);
+      showToast('Fehler beim Erstellen der PDF');
+    } finally {
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Als PDF herunterladen';
+    }
+  }
+  window.exportBreakoutsPdf = exportBreakoutsPdf;
+
+  // Helper: draw a 5-pointed star
+  function drawStar(doc, cx, cy, size, filled) {
+    const points = [];
+    for (let i = 0; i < 10; i++) {
+      const angle = (Math.PI / 5) * i - Math.PI / 2;
+      const r = i % 2 === 0 ? size : size * 0.45;
+      points.push([cx + Math.cos(angle) * r, cy + Math.sin(angle) * r]);
+    }
+    const lines = [];
+    for (let i = 1; i < points.length; i++) {
+      lines.push([points[i][0] - points[i - 1][0], points[i][1] - points[i - 1][1]]);
+    }
+    lines.push([points[0][0] - points[points.length - 1][0], points[0][1] - points[points.length - 1][1]]);
+    doc.lines(lines, points[0][0], points[0][1], [1, 1], filled ? 'F' : 'D', true);
+  }
+</script>
