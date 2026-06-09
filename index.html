@@ -1,7 +1,20 @@
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
 <meta name="referrer" content="no-referrer" />
-<title>Presidents Club for Trainers '26 – Gran Canaria</title>
+<title>PC4T '26 – Gran Canaria</title>
+
+<!-- ============ PWA META TAGS ============ -->
+<meta name="theme-color" content="#0F2547" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="PC4T '26" />
+<meta name="application-name" content="PC4T '26" />
+
+<!-- App icon (SVG, inline data URI) used for Apple home screen -->
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230F2547'/%3E%3Ctext x='90' y='86' font-family='Arial,sans-serif' font-size='52' font-weight='800' fill='white' text-anchor='middle'%3EPC4T%3C/text%3E%3Ctext x='90' y='126' font-family='Arial,sans-serif' font-size='34' font-weight='700' fill='%23E8633A' text-anchor='middle'%3E'26%3C/text%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230F2547'/%3E%3Ctext x='90' y='86' font-family='Arial,sans-serif' font-size='52' font-weight='800' fill='white' text-anchor='middle'%3EPC4T%3C/text%3E%3Ctext x='90' y='126' font-family='Arial,sans-serif' font-size='34' font-weight='700' fill='%23E8633A' text-anchor='middle'%3E'26%3C/text%3E%3C/svg%3E" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -709,6 +722,173 @@
     margin-top: 4px;
   }
   .breakout-photo-btn:hover { background: var(--navy-700); }
+
+  /* ---------- BREAKOUT THEME CARD (Hero-Style wie im Booklet) ---------- */
+  .breakout-acc.theme-card {
+    background: var(--navy-800);
+    color: #fff;
+    border: none;
+    position: relative;
+    padding-top: 4px;
+  }
+  .breakout-acc.theme-card.t1 { border-top: 4px solid var(--blue-500); }
+  .breakout-acc.theme-card.t2 { border-top: 4px solid var(--amber-500); }
+  .breakout-acc.theme-card.t3 { border-top: 4px solid var(--teal-500); }
+
+  .breakout-acc.theme-card .breakout-acc-head {
+    padding: 20px 18px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .breakout-acc.theme-card .breakout-acc-head:hover {
+    background: var(--navy-700);
+  }
+  .breakout-acc.theme-card .theme-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .breakout-acc.theme-card .theme-number {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 2px solid;
+    color: inherit;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    background: transparent;
+    flex-shrink: 0;
+  }
+  .breakout-acc.theme-card.t1 .theme-number { border-color: var(--blue-500); color: var(--blue-500); }
+  .breakout-acc.theme-card.t2 .theme-number { border-color: var(--amber-500); color: var(--amber-500); }
+  .breakout-acc.theme-card.t3 .theme-number { border-color: var(--teal-500); color: var(--teal-500); }
+
+  .breakout-acc.theme-card .theme-icon {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .breakout-acc.theme-card .theme-icon i { font-size: 28px; }
+  .breakout-acc.theme-card.t1 .theme-icon i { color: var(--blue-500); }
+  .breakout-acc.theme-card.t2 .theme-icon i { color: var(--amber-500); }
+  .breakout-acc.theme-card.t3 .theme-icon i { color: var(--teal-500); }
+
+  .breakout-acc.theme-card .theme-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin: 0 0 8px;
+    text-align: left;
+  }
+  .breakout-acc.theme-card .theme-subtitle {
+    font-size: 13px;
+    font-style: italic;
+    margin: 0 0 12px;
+    text-align: left;
+  }
+  .breakout-acc.theme-card.t1 .theme-subtitle { color: var(--blue-500); }
+  .breakout-acc.theme-card.t2 .theme-subtitle { color: var(--amber-500); }
+  .breakout-acc.theme-card.t3 .theme-subtitle { color: var(--teal-500); }
+
+  .breakout-acc.theme-card .theme-divider {
+    height: 1px;
+    margin: 0 0 14px;
+    opacity: 0.4;
+  }
+  .breakout-acc.theme-card.t1 .theme-divider { background: var(--blue-500); }
+  .breakout-acc.theme-card.t2 .theme-divider { background: var(--amber-500); }
+  .breakout-acc.theme-card.t3 .theme-divider { background: var(--teal-500); }
+
+  .breakout-acc.theme-card .theme-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .breakout-acc.theme-card.t1 .theme-section-label { color: var(--blue-500); }
+  .breakout-acc.theme-card.t2 .theme-section-label { color: var(--amber-500); }
+  .breakout-acc.theme-card.t3 .theme-section-label { color: var(--teal-500); }
+
+  .breakout-acc.theme-card .theme-goals {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px;
+  }
+  .breakout-acc.theme-card .theme-goals li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.92);
+    padding: 3px 0;
+  }
+
+  .breakout-acc.theme-card .theme-coaches {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding-top: 10px;
+  }
+  .breakout-acc.theme-card .theme-coach {
+    text-align: center;
+    cursor: pointer;
+  }
+  .breakout-acc.theme-card .theme-coach-avatar {
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    border: 2.5px solid;
+    background: var(--navy-700);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 auto 6px;
+    transition: transform 0.15s;
+  }
+  .breakout-acc.theme-card.t1 .theme-coach-avatar { border-color: var(--blue-500); }
+  .breakout-acc.theme-card.t2 .theme-coach-avatar { border-color: var(--amber-500); }
+  .breakout-acc.theme-card.t3 .theme-coach-avatar { border-color: var(--teal-500); }
+  .breakout-acc.theme-card .theme-coach:hover .theme-coach-avatar {
+    transform: scale(1.05);
+  }
+  .breakout-acc.theme-card .theme-coach-name {
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.2;
+  }
+
+  .breakout-acc.theme-card .breakout-acc-chevron {
+    color: rgba(255,255,255,0.5);
+    margin-top: 10px;
+    align-self: center;
+  }
+
+  .breakout-acc.theme-card .breakout-acc-inner {
+    background: #fff;
+    color: var(--text-1);
+    border-top: 1px solid var(--border);
+    padding: 4px 16px 16px;
+  }
+
+  .breakout-acc.theme-card .breakout-acc-body {
+    background: #fff;
+  }
+
+  /* Round group badge */
+  .round-group-info {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-2);
+  }
+  .round-group-info b { color: var(--text-1); }
 
   /* ---------- PDF EXPORT BUTTON ---------- */
   .pdf-export-card {
@@ -1689,6 +1869,129 @@
     z-index: 200;
   }
   .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ---------- PWA INSTALL BANNER ---------- */
+  .install-banner {
+    position: fixed;
+    bottom: calc(80px + var(--safe-bottom));
+    left: 50%;
+    transform: translateX(-50%) translateY(200%);
+    width: calc(100% - 24px);
+    max-width: 456px;
+    background: var(--navy-800);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+    box-shadow: var(--shadow-lg);
+    z-index: 150;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.4s ease;
+  }
+  .install-banner.show { transform: translateX(-50%) translateY(0); }
+  .install-banner-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: var(--coral-500);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 22px;
+  }
+  .install-banner-text { flex: 1; min-width: 0; }
+  .install-banner-title { font-size: 14px; font-weight: 700; }
+  .install-banner-sub { font-size: 11px; opacity: 0.8; margin-top: 1px; }
+  .install-banner-btn {
+    background: var(--coral-500);
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .install-banner-close {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+
+  /* iOS install instructions modal */
+  .ios-install-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 27, 54, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 250;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .ios-install-overlay.active { display: flex; }
+  .ios-install-sheet {
+    background: var(--surface);
+    width: 100%;
+    max-width: 480px;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    padding: 24px 20px calc(28px + var(--safe-bottom));
+    text-align: center;
+    animation: slideUp 0.3s ease;
+  }
+  .ios-install-sheet h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 8px;
+  }
+  .ios-install-sheet p {
+    font-size: 13px;
+    color: var(--text-2);
+    margin: 0 0 20px;
+    line-height: 1.5;
+  }
+  .ios-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    padding: 12px;
+    background: var(--surface-2);
+    border-radius: var(--radius-md);
+    margin-bottom: 8px;
+  }
+  .ios-step-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--coral-500);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .ios-step-text { font-size: 13px; }
+  .ios-step-text b { font-weight: 700; }
+  .ios-install-close-btn {
+    background: var(--navy-800);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 12px;
+  }
 </style>
 
 <div class="app" id="app">
@@ -1698,12 +2001,11 @@
     <div class="hero-content">
       <div class="hero-top">
         <span class="brand-pill"><i class="ti ti-star"></i> PC4T '26</span>
-        <button class="hero-icon-btn" onclick="goTo('info')" aria-label="Info"><i class="ti ti-info-circle"></i></button>
       </div>
       <div class="hero-bottom">
         <h1>Presidents Club<br /><span class="accent">for Trainers '26</span></h1>
         <div class="hero-sub"><i class="ti ti-map-pin"></i> Gran Canaria · Lopesan Baobab Resort</div>
-        <div class="hero-dates">Datum folgt · Anreise & Ankunft 14:00 – 16:00 Uhr</div>
+        <div class="hero-dates">18. – 20. Juni 2026 · Anreise & Ankunft 14:00 – 16:00 Uhr</div>
         <div class="countdown">
           <div class="cd-box"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Tage</div></div>
           <div class="cd-box"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">Std</div></div>
@@ -2031,14 +2333,24 @@
     <div class="section-head" style="margin-top: 22px;">
       <div class="section-title" style="font-size: 14px;">Packliste</div>
     </div>
-    <div class="checklist" id="checklist">
-      <div class="checklist-item" data-id="pack-1"><div class="check-box"></div><span class="check-label">Badesachen &amp; Sonnencreme</span></div>
-      <div class="checklist-item" data-id="pack-2"><div class="check-box"></div><span class="check-label">Outfit für Pool Party (Freitag)</span></div>
-      <div class="checklist-item" data-id="pack-3"><div class="check-box"></div><span class="check-label">Bequemes für Katamaran (Samstag)</span></div>
-      <div class="checklist-item" data-id="pack-4"><div class="check-box"></div><span class="check-label">Smart Casual fürs Dinner</span></div>
-      <div class="checklist-item" data-id="pack-5"><div class="check-box"></div><span class="check-label">Sportschuhe für Workshops</span></div>
-      <div class="checklist-item" data-id="pack-6"><div class="check-box"></div><span class="check-label">Adapter (Typ C / F passt in DE)</span></div>
-      <div class="checklist-item" data-id="pack-7"><div class="check-box"></div><span class="check-label">Personalausweis / Reisepass</span></div>
+    <div class="participant-dropdown" id="packlist-dropdown">
+      <button class="dropdown-toggle" onclick="togglePacklist()">
+        <span><i class="ti ti-luggage" style="color: var(--coral-500); margin-right: 8px; vertical-align: -2px;"></i>Packliste anzeigen</span>
+        <i class="ti ti-chevron-down dropdown-chev"></i>
+      </button>
+      <div class="dropdown-body">
+        <div style="border-top: 1px solid var(--border); padding: 8px;">
+          <div class="checklist" id="checklist" style="border: none; box-shadow: none; margin-bottom: 0;">
+            <div class="checklist-item" data-id="pack-1"><div class="check-box"></div><span class="check-label">Badesachen &amp; Sonnencreme</span></div>
+            <div class="checklist-item" data-id="pack-2"><div class="check-box"></div><span class="check-label">Outfit für Pool Party (Freitag)</span></div>
+            <div class="checklist-item" data-id="pack-3"><div class="check-box"></div><span class="check-label">Bequemes für Katamaran (Samstag)</span></div>
+            <div class="checklist-item" data-id="pack-4"><div class="check-box"></div><span class="check-label">Smart Casual fürs Dinner</span></div>
+            <div class="checklist-item" data-id="pack-5"><div class="check-box"></div><span class="check-label">Sportschuhe für Workshops</span></div>
+            <div class="checklist-item" data-id="pack-6"><div class="check-box"></div><span class="check-label">Adapter (Typ C / F passt in DE)</span></div>
+            <div class="checklist-item" data-id="pack-7"><div class="check-box"></div><span class="check-label">Personalausweis / Reisepass</span></div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div style="text-align: center; margin-top: 30px; padding: 16px; font-size: 11px; color: var(--text-3);">
@@ -2207,12 +2519,105 @@
     <img id="lightbox-img" alt="" />
   </div>
 
+  <!-- PWA INSTALL BANNER -->
+  <div class="install-banner" id="install-banner">
+    <div class="install-banner-icon"><i class="ti ti-download"></i></div>
+    <div class="install-banner-text">
+      <div class="install-banner-title">App installieren</div>
+      <div class="install-banner-sub">Leg PC4T '26 auf deinen Home-Bildschirm</div>
+    </div>
+    <button class="install-banner-btn" id="install-banner-btn">Installieren</button>
+    <button class="install-banner-close" id="install-banner-close"><i class="ti ti-x"></i></button>
+  </div>
+
+  <!-- iOS INSTALL INSTRUCTIONS -->
+  <div class="ios-install-overlay" id="ios-install-overlay" onclick="if(event.target.id==='ios-install-overlay') closeIosInstall()">
+    <div class="ios-install-sheet">
+      <h3>📲 Auf den Home-Bildschirm</h3>
+      <p>So installierst du PC4T '26 als App auf deinem iPhone:</p>
+      <div class="ios-step">
+        <div class="ios-step-num">1</div>
+        <div class="ios-step-text">Tippe unten in Safari auf das <b>Teilen-Symbol</b> (Quadrat mit Pfeil nach oben)</div>
+      </div>
+      <div class="ios-step">
+        <div class="ios-step-num">2</div>
+        <div class="ios-step-text">Scrolle und wähle <b>„Zum Home-Bildschirm"</b></div>
+      </div>
+      <div class="ios-step">
+        <div class="ios-step-num">3</div>
+        <div class="ios-step-text">Tippe oben rechts auf <b>„Hinzufügen"</b> – fertig!</div>
+      </div>
+      <button class="ios-install-close-btn" onclick="closeIosInstall()">Verstanden</button>
+    </div>
+  </div>
+
   <!-- TOAST -->
   <div class="toast" id="toast"></div>
 </div>
 
 <script>
-  // ===== SVG ICON SYSTEM (no external dependencies) =====
+  // ============ PWA SETUP ============
+  // 1. Inject Web App Manifest dynamically (as blob, so single-file works)
+  (function setupManifest() {
+    const iconSvg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%230F2547'/%3E%3Ctext x='256' y='244' font-family='Arial,sans-serif' font-size='148' font-weight='800' fill='white' text-anchor='middle'%3EPC4T%3C/text%3E%3Ctext x='256' y='356' font-family='Arial,sans-serif' font-size='96' font-weight='700' fill='%23E8633A' text-anchor='middle'%3E'26%3C/text%3E%3C/svg%3E";
+    const manifest = {
+      name: "Presidents Club for Trainers '26",
+      short_name: "PC4T '26",
+      description: "Event-App für den Presidents Club for Trainers 2026 auf Gran Canaria",
+      start_url: ".",
+      scope: ".",
+      display: "standalone",
+      orientation: "portrait",
+      background_color: "#0F2547",
+      theme_color: "#0F2547",
+      icons: [
+        { src: iconSvg, sizes: "192x192", type: "image/svg+xml", purpose: "any" },
+        { src: iconSvg, sizes: "512x512", type: "image/svg+xml", purpose: "any" },
+        { src: iconSvg, sizes: "512x512", type: "image/svg+xml", purpose: "maskable" }
+      ]
+    };
+    const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('link');
+    link.rel = 'manifest';
+    link.href = url;
+    document.head.appendChild(link);
+  })();
+
+  // 2. Register a Service Worker for offline support (inline via blob)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      const swCode = `
+        const CACHE = 'pc4t26-v1';
+        self.addEventListener('install', e => { self.skipWaiting(); });
+        self.addEventListener('activate', e => { e.waitUntil(self.clients.claim()); });
+        self.addEventListener('fetch', e => {
+          if (e.request.method !== 'GET') return;
+          e.respondWith(
+            caches.open(CACHE).then(cache =>
+              cache.match(e.request).then(cached => {
+                const network = fetch(e.request).then(resp => {
+                  if (resp && resp.status === 200 && resp.type === 'basic') {
+                    cache.put(e.request, resp.clone());
+                  }
+                  return resp;
+                }).catch(() => cached);
+                return cached || network;
+              })
+            )
+          );
+        });
+      `;
+      const blob = new Blob([swCode], { type: 'application/javascript' });
+      const swUrl = URL.createObjectURL(blob);
+      navigator.serviceWorker.register(swUrl).catch(() => {
+        // Service worker registration failed silently (e.g. blob SW restriction)
+        // App still works fully online without it.
+      });
+    });
+  }
+
+  // ============ SVG ICON SYSTEM (no external dependencies) ============
   // Inline SVG icons compatible with <i class="ti ti-NAME"></i> syntax
   const ICONS = {
     'home': '<path d="M5 12l-2 0l9 -9l9 9l-2 0"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"/><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"/>',
@@ -2335,26 +2740,265 @@
 
 <script>
   // ===== DATA =====
+  // Coach data based on PDF (Sales Partner first in PDF order, then Head Office)
   const coaches = [
-    { id: 'c1',  type: 'sp', name: 'Kevin Schwar',           role: 'Sales Partner · Chemnitz',         since: '01.11.2022', bg: ['Gelernter KFZ-Mechatroniker','Soldat 8 Jahre mit Außeneinsatz','Fahrzeugtechnik','In den Semesterferien als PR zu Ranger'], topics: ['Planung','Struktur'], phone: '01511 0105060' },
-    { id: 'c2',  type: 'sp', name: 'Marko Reinke',           role: 'Sales Partner · Erfurt',           since: '01.08.2005', bg: ['Über 20 Jahre Erfahrung'], topics: ['Mitarbeiterbindung'], phone: '01516 5526102' },
-    { id: 'c3',  type: 'sp', name: 'Alan Rashed',            role: 'Sales Partner · Oldenburg',        since: '02.09.2025', bg: ['Realschule mit 3,4 bestanden','Keine Ausbildung','Pizza Lieferant'], topics: ['Persönliche Weiterentwicklung','Wie werde ich mein bestes Selbst'], phone: '0175 1020104' },
-    { id: 'c4',  type: 'sp', name: 'Sven W. Peter',          role: 'Sales Partner · Hannover',         since: '01.06.2005', bg: ['32 Jahre Erfahrung'], topics: ['Struktur im Deal','Mitarbeiterbindung','NVM-Push','Qualität & Tools und Reports'], phone: '0172 5478090' },
-    { id: 'c5',  type: 'sp', name: 'Antonio Panucci',        role: 'Sales Partner · Eschborn',         since: '17.05.2018', bg: ['Infos folgen'], topics: ['Themen folgen'], phone: '01515 1709474' },
-    { id: 'c6',  type: 'sp', name: 'Pedram Mesrabadi Fard',  role: 'Sales Partner · Hamburg',          since: '01.01.2023', bg: ['Versicherungsvertreter','Pizza Lieferant'], topics: ['Führung','Mindset'], phone: '0163 8527374' },
-    { id: 'c7',  type: 'sp', name: 'Nektarios Kasimis',      role: 'Sales Partner · Schweinfurt',      since: '01.01.2025', bg: ['Verschiedene Schulen ohne viel Erfolg','Als Lagerist über Wasser gehalten','Am Tiefpunkt Motivation gefunden'], topics: ['Motivation / Inspiration / Hunger wecken','Gebietsplanung','Team Aufbau'], phone: '0175 8332200' },
-    { id: 'c8',  type: 'sp', name: 'Jerome Gonda',           role: 'Sales Partner · Berlin',           since: '01.09.2020', bg: ['Sollte erst Mathelehrer werden','Wurde dann Fliesenleger','Knie kaputt und ab zu Ranger'], topics: ['Durchhaltevermögen','Negative richtig definieren','Bodenständigkeit'], phone: '01511 7239237' },
-    { id: 'c9',  type: 'sp', name: 'Lisa-Marie Darac',       role: 'Sales Partner · Magdeburg',        since: '02.01.2023', bg: ['Einzelhandel (Abercrombie & Fitch)','Duales Studium in Marketing Management geplant','Studium für Ranger abgesagt'], topics: ['Einstellung beibehalten','Ausbilden & Anleiten','Mindset: Warum bin ich hier?'], phone: '0162 7957924', avatarColor: 'coral' },
-    // Head Office
-    { id: 'h1', type: 'ho', name: 'Mikaela Ioannou',  role: 'Head of Social Marketing',         since: 'Januar 2023',      bg: ['Bei Ranger seit Januar 2023'], topics: ['Marketing','Social Media','Corporate Communication','Content: Filme & Fotos'], phone: '0172 2155421', avatarColor: 'coral' },
-    { id: 'h2', type: 'ho', name: 'Lilian Moody',     role: 'Teamlead Sales Management · SPM',  since: 'November 2023',    bg: ['Teamlead seit September 2025','Betreut: Marco Pamer, Aaron Marquardt, Marco Dehn'], topics: ['Events, Reisen & Incentives','Telekom Kleidung','KPI Performance'], phone: '0160 4380524', avatarColor: 'coral' },
-    { id: 'h3', type: 'ho', name: 'Tim Albers',       role: 'Senior PM Events',                 since: 'August 2023',      bg: ['Senior Projektmanager seit Juli 2024'], topics: ['Events, Reisen & Incentives','An- und Abreise (Flug + Hotel)'], phone: '0151 22725194', avatarColor: 'coral' },
-    { id: 'h4', type: 'ho', name: 'Simone Elsner',    role: 'Director Sales Training',          since: 'Infos folgen',     bg: ['Infos folgen'], topics: ['Sales Training'], phone: '', avatarColor: 'coral' },
-    { id: 'h5', type: 'ho', name: 'Florian Jack',     role: 'MA Corporate Communication',       since: 'Infos folgen',     bg: ['Infos folgen'], topics: ['Communication'], phone: '', avatarColor: 'coral' },
-    { id: 'h6', type: 'ho', name: 'Justin Jakobi',    role: 'Vertriebstrainer',                 since: 'Mai 2024',         bg: ['Juni 2020: Guy bei Ercan Öztürk in Hagen','November 2021: Sales Partner in Marl','Mai 2024: Vertriebs- und Kommunikationscoach Head Office','Mai 2026: Technischer Lead für die Sales Coaches'], topics: ['Einsätze im Deal','Präsenz Workshops','Vertriebs- und Kommunikations Coaching','Einsatzplanung der Sales Coaches'], phone: '0171 5363788', avatarColor: 'coral' },
-    { id: 'h7', type: 'ho', name: 'Tayfun Kaplan',    role: 'SPM',                              since: 'Infos folgen',     bg: ['Infos folgen'], topics: ['Sales Management'], phone: '', avatarColor: 'coral' },
-    { id: 'h8', type: 'ho', name: 'Barbara Schaper',  role: 'SPM',                              since: 'Infos folgen',     bg: ['Infos folgen'], topics: ['Sales Management'], phone: '', avatarColor: 'coral' },
-    { id: 'h9', type: 'ho', name: 'Simone Washeim',   role: 'Director Sales Recruiting',        since: 'Februar 2020',     bg: ['Director seit Dezember 2022'], topics: ['Zentralrecruiting','Locals und PR Experts','Candidate Journey bis zur Einstellung','Recruiting Incentives'], phone: '0211 20008404', avatarColor: 'coral' },
+    // ---- SALES PARTNER (Reihenfolge wie in PDF) ----
+    {
+      id: 'sp1', type: 'sp', name: 'Sven W. Peter',
+      role: 'Senior Vice President · Hannover',
+      since: '03.10.1993',
+      hauptDeal: 'Hannover',
+      po: 'Engin Celik, Gunter Farrack, Bianka Gintschel, Onur Hittet, Michaela Jahnke, Tom Jenßen',
+      bg: ['über 20 Jahre Erfahrung'],
+      topics: ['Struktur im Deal', 'Mitarbeiterbindung', 'NVM-Push', 'Qualität, Tools & Reports'],
+      phone: '0172 5478090'
+    },
+    {
+      id: 'sp2', type: 'sp', name: 'Jerome Gonda',
+      role: 'Sales Partner · Berlin',
+      since: '01.12.2001',
+      hauptDeal: 'Berlin',
+      po: 'Jasmin Charlotte Fredenburg, Michel Junge',
+      bg: ['sollte erst Mathelehrer werden', 'wurde dann Fliesenleger', 'Knie kaputt, danach ab und zu Ranger'],
+      topics: ['Durchhaltevermögen', 'Negative richtig definieren', 'Bodenständigkeit'],
+      phone: '0151 17239237'
+    },
+    {
+      id: 'sp3', type: 'sp', name: 'Marko Reinke',
+      role: 'Senior Vice President · Erfurt',
+      since: '01.08.2005',
+      hauptDeal: 'Erfurt',
+      po: 'Max Altmann, Nico Hofmann, Hendrik Kehr, Kadir Keskin, Sophia Schmidt, Mohammed Shbeb, William Spielberg, Martin Wäldchen, Steffen Wilhelm, Benjamin Zobel',
+      bg: ['über 20 Jahre Erfahrung'],
+      topics: ['Mitarbeiterbindung', 'Dealsteuerung'],
+      phone: '0151 65526102'
+    },
+    {
+      id: 'sp4', type: 'sp', name: 'Antonio Panucci',
+      role: 'Sales Partner · Eschborn',
+      since: '17.05.2016',
+      hauptDeal: 'Eschborn',
+      po: 'Tim Haase, Scharek Halim, Ramin Sultani',
+      bg: ['Ausbildung als Kommunikationskaufmann bei der Telekom', 'Versicherungen verkauft'],
+      topics: ['Positive Einstellung & Motivation', 'Durchhaltevermögen'],
+      phone: '0151 51709474'
+    },
+    {
+      id: 'sp5', type: 'sp', name: 'Kevin Schwar',
+      role: 'Sales Partner · Chemnitz',
+      since: '01.11.2022',
+      hauptDeal: 'Chemnitz',
+      po: null,
+      bg: ['gelernter KFZ-Mechatroniker', 'Soldat (8 Jahre, mit Außeneinsatz)', 'Fahrzeugtechnik', 'Während der Semesterferien als PR zu Ranger'],
+      topics: ['Dealsteuerung', 'Zahlen, Daten, Fakten-Analyse', 'Mitarbeiterentwicklung'],
+      phone: '0151 10105060'
+    },
+    {
+      id: 'sp6', type: 'sp', name: 'Pedram Mesrabadi Fard',
+      role: 'Sales Partner · Hamburg',
+      since: '01.01.2023',
+      hauptDeal: 'Hamburg',
+      po: null,
+      bg: ['Versicherungsvertreter', 'Pizza Lieferant'],
+      topics: ['Führung', 'Mindset', 'Spaß bei der Arbeit'],
+      phone: '0163 8527374'
+    },
+    {
+      id: 'sp7', type: 'sp', name: 'Lisa-Marie Darac',
+      role: 'Sales Partnerin · Magdeburg',
+      since: '02.01.2023',
+      hauptDeal: 'Magdeburg',
+      po: null,
+      bg: ['Einzelhandel (Abercrombie & Fitch)', 'Duales Studium in Marketing Management geplant', 'Studium für Ranger abgesagt'],
+      topics: ['Einstellung beibehalten', 'Ausbilden & Anleiten', 'Mindset: Warum bin ich hier?'],
+      phone: '0162 7957924',
+      avatarColor: 'coral'
+    },
+    {
+      id: 'sp8', type: 'sp', name: 'Nektarios Kasimis',
+      role: 'Sales Partner · Schweinfurt',
+      since: '01.01.2025',
+      hauptDeal: 'Schweinfurt',
+      po: null,
+      bg: ['viele Schulen von Gymnasium bis Hauptschule – ohne viel Erfolg', 'Lagerist, um über Wasser zu bleiben', 'am Tiefpunkt Motivation ergriffen, etwas im Leben zu ändern'],
+      topics: ['Motivation, Inspiration, Hunger wecken', 'Gebietsplanung', 'Team Aufbau'],
+      phone: '0175 8332200'
+    },
+    {
+      id: 'sp9', type: 'sp', name: 'Bernd Robert Kothe',
+      role: 'Sales Partner · Cottbus',
+      since: '02.04.2025',
+      hauptDeal: 'Cottbus',
+      po: null,
+      bg: ['Objektschutz', 'Selbstständig im Import/Export'],
+      topics: ['Mitarbeiterbindung', 'Mindset'],
+      phone: '0160 90360279'
+    },
+    {
+      id: 'sp10', type: 'sp', name: 'Alan Rashed',
+      role: 'Sales Partner · Oldenburg',
+      since: '02.09.2025',
+      hauptDeal: 'Oldenburg',
+      po: null,
+      bg: ['Realschule mit 3,4 gerade so bestanden', 'keine Ausbildung', 'Pizza Lieferant'],
+      topics: ['Persönliche Weiterentwicklung', 'Wie werde ich mein bestes Selbst'],
+      phone: '0175 1020104'
+    },
+    {
+      id: 'sp11', type: 'sp', name: 'Michele Delfonso',
+      role: 'Sales Partner · Wiesbaden',
+      since: '04.01.2018',
+      hauptDeal: 'Wiesbaden',
+      po: 'Pascal Brednich, Payman Noori, Lukas Kievernagel, Hazir Morina',
+      bg: ['Gas- Wasser Installateur', 'vor Ranger im Bereich Security tätig'],
+      topics: ['Wie baue ich einen Power-Deal auf', 'Mitarbeitermotivation & Mindset', 'Umgang mit Geld'],
+      phone: '0160 94421668'
+    },
+    {
+      id: 'sp12', type: 'sp', name: 'Mert Keskin',
+      role: 'Sales Partner · Schwerin',
+      since: '01.09.2021',
+      hauptDeal: 'Schwerin',
+      po: 'Abed Almohamad Alabed',
+      bg: ['Studium Bauingenieurswesen abgebrochen'],
+      topics: ['Mitarbeiterbindung', 'Motivation', 'Power-Deal aufbauen'],
+      phone: '0160 1595114'
+    },
+    {
+      id: 'sp13', type: 'sp', name: 'Thomas Alkan',
+      role: 'Sales Partner · Bielefeld',
+      since: '01.02.2017',
+      hauptDeal: 'Bielefeld',
+      po: 'Refahil Nayir, Alexander Root',
+      bg: ['Gastronomie und Baustelle geleitet', 'Barkeeper', 'Lager / Logistik'],
+      topics: ['Recruiting', 'Zahlen, Daten, Fakten', 'Motivation'],
+      phone: '0171 1575980'
+    },
+    {
+      id: 'sp14', type: 'sp', name: 'Michael Reinsch',
+      role: 'Sales Partner · München',
+      since: '01.03.2022',
+      hauptDeal: 'München',
+      po: 'Stefan Reinsch',
+      bg: ['Direkt nach dem Abitur bei Ranger angefangen'],
+      topics: ['Umgang mit Negativen', 'Orga Aufbau', 'Zielverfolgung und -erreichung', 'Durchhaltevermögen'],
+      phone: '0151 10050976'
+    },
+    {
+      id: 'sp15', type: 'sp', name: 'Fatih Hergül',
+      role: 'Sales Partner · Bochum',
+      since: '02.12.2021',
+      hauptDeal: 'Bochum',
+      po: null,
+      bg: ['Startup von UG bis GmbH aufgebaut und erfolgreich verkauft', 'Vertrieb seit 2006'],
+      topics: ['Crew aufbauen', 'Recruiting', 'Karriereziele in striktem Zeitplan erreichen'],
+      phone: '0157 83090784'
+    },
+    // ---- HEAD OFFICE ----
+    {
+      id: 'ho1', type: 'ho', name: 'Mikaela Ioannou',
+      role: 'Head of Social Marketing, Communications & Content',
+      since: 'Januar 2023',
+      hauptDeal: null,
+      po: null,
+      bg: ['Head of seit: Januar 2023', 'Bei Ranger seit: Januar 2023'],
+      topics: ['Marketing', 'Social Media', 'Corporate Communication', 'Content: Filme, Fotos'],
+      phone: '0172 2155421',
+      avatarColor: 'coral'
+    },
+    {
+      id: 'ho2', type: 'ho', name: 'Lilian Moody',
+      role: 'Teamlead Sales Management, SPM',
+      since: 'November 2023',
+      hauptDeal: null,
+      po: 'Marco Pamer Orga 1. & 2. Generation, Aaron Marquardt Orga, Marco Dehn Orga',
+      bg: ['Teamlead seit: September 2025', 'SPM seit: November 2023'],
+      topics: ['Events, Reisen & Incentives', 'Telekom Kleidung', 'KPI Performance'],
+      phone: '0160 4380524',
+      avatarColor: 'coral'
+    },
+    {
+      id: 'ho3', type: 'ho', name: 'Tim Albers',
+      role: 'Senior Projectmanager Events',
+      since: 'August 2023',
+      hauptDeal: null,
+      po: null,
+      bg: ['Senior Projektmanager seit: Juli 2024', 'Bei Ranger seit: August 2023'],
+      topics: ['Events, Reisen & Incentives', 'An- und Abreise (Flug + Hotel)'],
+      phone: '0151 22725194',
+      avatarColor: 'coral'
+    },
+    {
+      id: 'ho4', type: 'ho', name: 'Simone Elsner',
+      role: 'Director Sales Training',
+      since: 'Infos folgen',
+      hauptDeal: null,
+      po: null,
+      bg: ['Infos folgen'],
+      topics: ['Sales Training'],
+      phone: '',
+      avatarColor: 'coral'
+    },
+    {
+      id: 'ho5', type: 'ho', name: 'Florian Jack',
+      role: 'MA Corporate Communication',
+      since: 'Infos folgen',
+      hauptDeal: null,
+      po: null,
+      bg: ['Infos folgen'],
+      topics: ['Corporate Communication'],
+      phone: '',
+      avatarColor: 'coral'
+    },
+    {
+      id: 'ho6', type: 'ho', name: 'Justin Jakobi',
+      role: 'Vertriebstrainer',
+      since: 'Juni 2020',
+      hauptDeal: null,
+      po: null,
+      bg: [
+        'Juni 2020: Guy bei Ercan Öztürk in Hagen',
+        'November 2021: Sales Partner in Marl',
+        'Mai 2024: Vertriebs- und Kommunikationscoach im Ranger HeadOffice',
+        'Mai 2026: Technischer Lead für die Sales Coaches'
+      ],
+      topics: ['Einsätze im Deal', 'Präsenz Workshops', 'Vertriebs- und Kommunikations Coaching', 'Einsatzplanung der Sales Coaches'],
+      phone: '0171 5363788',
+      avatarColor: 'coral'
+    },
+    {
+      id: 'ho7', type: 'ho', name: 'Tayfun Kaplan',
+      role: 'SPM',
+      since: 'Infos folgen',
+      hauptDeal: null,
+      po: null,
+      bg: ['Infos folgen'],
+      topics: ['Sales Management'],
+      phone: '',
+      avatarColor: 'coral'
+    },
+    {
+      id: 'ho8', type: 'ho', name: 'Barbara Schaper',
+      role: 'SPM',
+      since: 'Infos folgen',
+      hauptDeal: null,
+      po: null,
+      bg: ['Infos folgen'],
+      topics: ['Sales Management'],
+      phone: '',
+      avatarColor: 'coral'
+    },
+    {
+      id: 'ho9', type: 'ho', name: 'Simone Washeim',
+      role: 'Director Sales Recruiting',
+      since: 'Februar 2020',
+      hauptDeal: null,
+      po: null,
+      bg: ['Bei Ranger seit: Februar 2020', 'Director seit: Dezember 2022'],
+      topics: ['Zentralrecruiting', 'Locals und PR Experts', 'Candidate Journey bis zur Einstellung', 'Recruiting Incentives'],
+      phone: '0211 20008404',
+      avatarColor: 'coral'
+    },
   ];
 
   const groups = {
@@ -2378,8 +3022,8 @@
 
   document.querySelectorAll('.nav-btn').forEach(b => b.addEventListener('click', () => goTo(b.dataset.tab)));
 
-  // ===== COUNTDOWN ===== (placeholder date - update when finalized)
-  const targetDate = new Date('2026-06-11T14:00:00+01:00').getTime();
+  // ===== COUNTDOWN ===== (Reise startet 18.06.2026, 14:00 Uhr Ortszeit Gran Canaria = WEST = UTC+1)
+  const targetDate = new Date('2026-06-18T14:00:00+01:00').getTime();
   function updateCountdown() {
     const diff = Math.max(0, targetDate - Date.now());
     const d = Math.floor(diff / 86400000);
@@ -2428,7 +3072,7 @@
     if (!c) return;
     document.getElementById('modal-content').innerHTML = `
       <div class="modal-header">
-        <div class="modal-avatar ${c.avatarColor ? '' : ''}" style="${c.avatarColor === 'coral' ? 'background: var(--coral-500);' : ''}">${initials(c.name)}</div>
+        <div class="modal-avatar" style="${c.avatarColor === 'coral' ? 'background: var(--coral-500);' : ''}">${initials(c.name)}</div>
         <div>
           <div class="modal-name">${c.name}</div>
           <div class="modal-role">${c.role}</div>
@@ -2438,8 +3082,20 @@
         <div class="modal-section-title">${c.type === 'sp' ? 'Sales Partner seit' : 'Bei Ranger seit'}</div>
         <div style="font-size: 14px; font-weight: 500;">${c.since}</div>
       </div>
+      ${c.hauptDeal ? `
+        <div class="modal-section">
+          <div class="modal-section-title">Haupt-Deal</div>
+          <div style="font-size: 14px; font-weight: 500;">${c.hauptDeal}</div>
+        </div>
+      ` : ''}
+      ${c.po ? `
+        <div class="modal-section">
+          <div class="modal-section-title">${c.type === 'sp' ? 'PO von' : 'Betreut'}</div>
+          <div style="font-size: 13px; color: var(--text-1); line-height: 1.5;">${c.po}</div>
+        </div>
+      ` : ''}
       <div class="modal-section">
-        <div class="modal-section-title">Hintergrund</div>
+        <div class="modal-section-title">Beruflicher Hintergrund</div>
         <ul class="modal-list">${c.bg.map(b => `<li>${b}</li>`).join('')}</ul>
       </div>
       <div class="modal-section">
@@ -2515,6 +3171,69 @@
     setTimeout(() => t.classList.remove('show'), 2500);
   }
 
+  // ===== PWA INSTALL FLOW =====
+  let deferredPrompt = null;
+  const installBanner = document.getElementById('install-banner');
+  const installBtn = document.getElementById('install-banner-btn');
+  const installClose = document.getElementById('install-banner-close');
+
+  function isStandalone() {
+    return window.matchMedia('(display-mode: standalone)').matches ||
+           window.navigator.standalone === true;
+  }
+  function isIos() {
+    return /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+  }
+  function bannerDismissed() {
+    try { return localStorage.getItem('pc4t-install-dismissed') === '1'; } catch (e) { return false; }
+  }
+
+  // Android / Chrome: capture the native install prompt
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (!isStandalone() && !bannerDismissed()) {
+      setTimeout(() => installBanner.classList.add('show'), 2500);
+    }
+  });
+
+  installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      // Android: trigger native install
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBanner.classList.remove('show');
+      if (outcome === 'accepted') showToast('App wird installiert');
+    } else if (isIos()) {
+      // iOS: show manual instructions
+      document.getElementById('ios-install-overlay').classList.add('active');
+      installBanner.classList.remove('show');
+    }
+  });
+
+  installClose.addEventListener('click', () => {
+    installBanner.classList.remove('show');
+    try { localStorage.setItem('pc4t-install-dismissed', '1'); } catch (e) {}
+  });
+
+  // iOS: show banner manually (no beforeinstallprompt event on Safari)
+  if (isIos() && !isStandalone() && !bannerDismissed()) {
+    window.addEventListener('load', () => {
+      setTimeout(() => installBanner.classList.add('show'), 3000);
+    });
+  }
+
+  function closeIosInstall() {
+    document.getElementById('ios-install-overlay').classList.remove('active');
+  }
+  window.closeIosInstall = closeIosInstall;
+
+  // Hide banner if already installed
+  if (isStandalone()) {
+    installBanner.style.display = 'none';
+  }
+
   // ===== HOTEL CAROUSEL DOTS =====
   const carousel = document.getElementById('hotel-carousel');
   const dotsWrap = document.getElementById('carousel-dots');
@@ -2536,31 +3255,79 @@
     '2': { time: '11:40 – 12:55 Uhr · Freitag' },
     '3': { time: '13:45 – 14:55 Uhr · Freitag' }
   };
-  // Theme placeholders + coaches per group (3 coaches per group per round - placeholders for now)
-  // When real data is known, just update these arrays.
-  const breakoutData = {
-    '1': [
-      { group: '1', theme: 'Breakout Thema 1', coaches: ['Sven W. Peter', 'Marko Reinke', 'Kevin Schwar'] },
-      { group: '2', theme: 'Breakout Thema 2', coaches: ['Pedram Mesrabadi Fard', 'Jerome Gonda', 'Alan Rashed'] },
-      { group: '3', theme: 'Breakout Thema 3', coaches: ['Nektarios Kasimis', 'Lisa-Marie Darac', 'Antonio Panucci'] }
-    ],
-    '2': [
-      { group: '1', theme: 'Breakout Thema 2', coaches: ['Pedram Mesrabadi Fard', 'Jerome Gonda', 'Alan Rashed'] },
-      { group: '2', theme: 'Breakout Thema 3', coaches: ['Nektarios Kasimis', 'Lisa-Marie Darac', 'Antonio Panucci'] },
-      { group: '3', theme: 'Breakout Thema 1', coaches: ['Sven W. Peter', 'Marko Reinke', 'Kevin Schwar'] }
-    ],
-    '3': [
-      { group: '1', theme: 'Breakout Thema 3', coaches: ['Nektarios Kasimis', 'Lisa-Marie Darac', 'Antonio Panucci'] },
-      { group: '2', theme: 'Breakout Thema 1', coaches: ['Sven W. Peter', 'Marko Reinke', 'Kevin Schwar'] },
-      { group: '3', theme: 'Breakout Thema 2', coaches: ['Pedram Mesrabadi Fard', 'Jerome Gonda', 'Alan Rashed'] }
-    ]
+
+  // Themen-Definitionen (aus dem Booklet)
+  const breakoutThemes = {
+    't1': {
+      number: '01',
+      title: 'Motivation & Mindset',
+      subtitle: 'Starke Teams erreichen starke Ziele',
+      icon: 'bulb',
+      goals: [
+        'Mitarbeiter von überall motivieren',
+        'Mindset nachhaltig stärken',
+        'Konflikte innerhalb des Teams lösen',
+        'Bindung zum Guy erhöhen'
+      ],
+      coachIds: ['sp6', 'sp8', 'sp10']  // Pedram, Nektarios, Alan
+    },
+    't2': {
+      number: '02',
+      title: 'Rekrutierung & Einarbeitung',
+      subtitle: 'Recruiting + Erfolgreicher Start = Perfect Match',
+      icon: 'users-group',
+      goals: [
+        'Einfach & effektiv rekrutieren',
+        'Den Guy für Recruiting begeistern',
+        'Perfekte Ausbildung des Rookies',
+        'Erfolgreicher Onboarding-Prozess'
+      ],
+      coachIds: ['sp7', 'sp3', 'sp9']  // Lisa-Marie, Marko, Bernd
+    },
+    't3': {
+      number: '03',
+      title: 'KPIs im Vertrieb',
+      subtitle: 'Welche Kennzahlen sind wichtig? & Wie steuere ich Qualität in meiner Crew?',
+      icon: 'chart-up',
+      goals: [
+        'Fokus auf die richtigen Zahlen',
+        'Zahlen bei den Guys im Blick behalten',
+        'Zahlen nachhaltig verbessern',
+        'Datenbasierte Entscheidungen treffen'
+      ],
+      coachIds: ['sp5', 'sp2', 'sp4']  // Kevin, Jerome, Antonio
+    }
   };
+
+  // Pro Runde: welche Gruppe macht welches Thema (Rotation)
+  const roundToGroupTheme = {
+    '1': { '1': 't1', '2': 't2', '3': 't3' },
+    '2': { '1': 't2', '2': 't3', '3': 't1' },
+    '3': { '1': 't3', '2': 't1', '3': 't2' }
+  };
+
+  function getCoachById(id) {
+    return coaches.find(c => c.id === id);
+  }
 
   function renderBreakouts(round) {
     document.getElementById('round-time-pill').innerHTML = `<i class="ti ti-clock" style="font-size: 12px; vertical-align: -2px; margin-right: 4px;"></i>${breakoutRounds[round].time}`;
     const list = document.getElementById('breakout-list');
-    list.innerHTML = breakoutData[round].map((b, idx) => {
-      const key = `r${round}-g${b.group}`;
+
+    // Show 3 themes (always in same order T1, T2, T3) for the selected round
+    // Each theme card shows which group will do this theme in this round
+    const themeOrder = ['t1', 't2', 't3'];
+    const groupForTheme = {};
+    for (const [grp, thm] of Object.entries(roundToGroupTheme[round])) {
+      groupForTheme[thm] = grp;
+    }
+
+    list.innerHTML = themeOrder.map(themeId => {
+      const theme = breakoutThemes[themeId];
+      const groupNum = groupForTheme[themeId];
+      const coachList = theme.coachIds.map(id => getCoachById(id)).filter(Boolean);
+      const tClass = themeId; // t1, t2, t3
+      const key = `r${round}-${themeId}`;
       const data = breakoutState[key] || {};
       const notes = data.notes || '';
       const c1 = (data.commitments || [])[0] || '';
@@ -2568,17 +3335,36 @@
       const c3 = (data.commitments || [])[2] || '';
       const rating = data.rating || 0;
       const photos = data.photos || [];
+
       return `
-        <div class="breakout-acc g${b.group}" data-key="${key}">
+        <div class="breakout-acc theme-card ${tClass}" data-key="${key}">
           <div class="breakout-acc-head" onclick="toggleBreakout(this)">
-            <div class="breakout-number">0${idx + 1}</div>
-            <div class="breakout-acc-title-wrap">
-              <div class="breakout-acc-title">${b.theme}</div>
-              <div class="breakout-acc-coaches">${b.coaches.join(' · ')}</div>
+            <div class="theme-top-row">
+              <div class="theme-number">${theme.number}</div>
+              <div class="theme-icon"><i class="ti ti-${theme.icon}"></i></div>
+            </div>
+            <div class="theme-title">${theme.title}</div>
+            <div class="theme-subtitle">${theme.subtitle}</div>
+            <div class="theme-divider"></div>
+            <div class="theme-section-label">ZIELE</div>
+            <ul class="theme-goals">
+              ${theme.goals.map(g => `<li>${g}</li>`).join('')}
+            </ul>
+            <div class="theme-coaches">
+              ${coachList.map(c => `
+                <div class="theme-coach" onclick="event.stopPropagation(); openCoach('${c.id}')">
+                  <div class="theme-coach-avatar">${initials(c.name)}</div>
+                  <div class="theme-coach-name">${c.name.split(' ')[0]}</div>
+                </div>
+              `).join('')}
             </div>
             <i class="ti ti-chevron-down breakout-acc-chevron"></i>
           </div>
           <div class="breakout-acc-body"><div class="breakout-acc-inner">
+
+            <div class="round-group-info">
+              In <b>Runde ${round}</b> macht <b>Gruppe ${groupNum}</b> dieses Thema
+            </div>
 
             <div class="block-label"><i class="ti ti-pencil"></i> Notizen</div>
             <textarea class="breakout-textarea" placeholder="Erkenntnisse, Ideen…" data-field="notes" data-key="${key}">${escapeHtml(notes)}</textarea>
@@ -2617,7 +3403,7 @@
               </div>
             ` : `
               <div class="breakout-photos">
-                ${photos.map((p, pi) => `<div class="breakout-photo-tile" onclick="openLightbox('${p}')"><img src="${p}" alt="" /></div>`).join('')}
+                ${photos.map((p) => `<div class="breakout-photo-tile" onclick="openLightbox('${p}')"><img src="${p}" alt="" /></div>`).join('')}
               </div>
             `}
 
@@ -2626,7 +3412,7 @@
       `;
     }).join('');
 
-    // Re-bind input change listeners
+    // Re-bind input listeners
     list.querySelectorAll('input, textarea').forEach(el => {
       el.addEventListener('input', () => {
         const key = el.dataset.key;
@@ -2857,6 +3643,11 @@
     document.getElementById('participant-dropdown').classList.toggle('open');
   }
   window.toggleParticipantDropdown = toggleParticipantDropdown;
+
+  function togglePacklist() {
+    document.getElementById('packlist-dropdown').classList.toggle('open');
+  }
+  window.togglePacklist = togglePacklist;
 
   // ===== TRAINING =====
   function openTrainingLink(url) {
